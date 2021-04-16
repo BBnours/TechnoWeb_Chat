@@ -1,0 +1,19 @@
+{
+  "name": "technoweb_chat",
+  "version": "1.0.0",
+  "description": "School web tech project based on Javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BBnours/TechnoWeb_Chat.git"
+  },
+  "author": "Olivier & Romain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BBnours/TechnoWeb_Chat/issues"
+  },
+  "homepage": "https://github.com/BBnours/TechnoWeb_Chat#readme"
+}
