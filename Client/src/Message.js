@@ -9,9 +9,9 @@ function Message({ message, i }) {
   return (
     <li key={i}>
       <p>
-        <span style={{ color: "green" }}>{message.author}</span>{" "}
+        <span style={{ color: "green" }}>{message.userId}</span>{" "}
         <span style={{ color: "#ff007f" }}>
-          {message.creation.toFormat("dd LLL yyyy HH:mm").toString()}
+          {message.created_at}
         </span>
         <span style={{ color: "#ffff00" }}> ~</span>
         <span style={{ color: "whitesmoke" }}>

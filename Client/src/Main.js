@@ -1,6 +1,9 @@
 import React from "react";
+import {useRef, useState} from 'react';
 import Channels from "./Channels.js";
 import Channel from "./Channel.js";
+import Intro from "./Intro"
+
 
 const styles = {
   main: {
@@ -12,25 +15,15 @@ const styles = {
 };
 
 function Main() {
-  const channels = [
-    {
-      name: "Fake channel",
-    },
-    {
-      name: "White Hat",
-    },
-    {
-      name: "Red Hat not Linux",
-    },
-    {
-      name: "Black Hat",
-    },
-  ];
+  const [channel, setChannel] = useState(null)
+  const fetchChannel = async (channel) => {
+    setChannel(channel)
+  }
 
   return (
     <main className="app-main" style={styles.main}>
-      <Channels channels={channels} />
-      <Channel channel={channels[0]} />
+      <Channels onChannel={fetchChannel} />
+      {channel ? <Channel channel={channel} messages={[]} /> : <Intro />}
     </main>
   );
 }
