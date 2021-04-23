@@ -40,6 +40,22 @@
   background-image: url(/image_background_3.jpg) ;
 }
 
+.login {
+  text-align: center;
+  margin: auto;
+}
+
+.labelLogin{
+  text-align: center;
+  margin: auto;
+  margin-right: 50px;
+}
+
+.inputLogin{
+  text-align: center;
+  margin: auto;
+}
+
 .intro {
   text-align: center;
   margin: auto;
