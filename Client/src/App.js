@@ -12,6 +12,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Welcome from "./Structure/Welcome";
+import Login from "./Structure/Login";
 
 const styles = {
   root: {
@@ -35,9 +36,13 @@ export default () => (
                   <Main />
                   <Footer />
               </Route>
-              <Route path="/">
+              <Route path="/welcome">
                   <Welcome/>
               </Route>
+              <Route path="/">
+                  <Login/>
+              </Route>
+
           </Switch>
       </BrowserRouter>
   </div>
