@@ -1,8 +1,10 @@
 import React from "react";
 import {useRef, useState} from 'react';
-import Channels from "./Channels.js";
-import Channel from "./Channel.js";
-import Intro from "./Intro"
+import Channels from "./Channel/Channels.js";
+import Channel from "./Channel/Channel.js";
+import Intro from "./Structure/Intro"
+import { makeStyles } from '@material-ui/core/styles';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 
 const styles = {
@@ -20,11 +22,18 @@ function Main() {
     setChannel(channel)
   }
 
+  const darkTheme = createMuiTheme({
+    palette: {
+      type: 'dark',
+    },
+  });
+
   return (
-    <main className="app-main" style={styles.main}>
+    <ThemeProvider  theme={darkTheme}>
+    <main className="app" style={styles.main} class="bg-warning">
       <Channels onChannel={fetchChannel} />
       {channel ? <Channel channel={channel} messages={[]} /> : <Intro />}
-    </main>
+    </main></ThemeProvider>
   );
 }
 

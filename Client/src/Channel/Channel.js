@@ -1,11 +1,14 @@
 import React, { useState, useRef} from "react";
-import "./App.css";
-import MessageForm from "./MessageSend.js";
-import Messages from "./Messages.js";
+import "../Style/App.css";
+import MessageForm from "../Message/MessageSend.js";
+import Paper from '@material-ui/core/Paper';
+import Messages from "../Message/Messages.js";
+import { createMuiTheme } from '@material-ui/core/styles';
 import axios from 'axios';
-const { DateTime } = require("luxon");
+
 
 function Channel({ channel }) {
+
   const listRef = useRef();
   const channelId = useRef()
   const [messages, setMessages] = useState([])
@@ -27,7 +30,7 @@ function Channel({ channel }) {
   }
 
   return (
-    <div class="bg-dark" className="channel">
+    <Paper  className="channel">
       <div className="messages">
         ----------------------------------------------------------------------
         <h1>Messages for {channel.name}</h1>
@@ -35,7 +38,7 @@ function Channel({ channel }) {
         <Messages messages={messages} />
       </div>
       <MessageForm addMessage={addMessage} />
-    </div>
+    </Paper>
   );
 }
 

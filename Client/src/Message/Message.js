@@ -1,5 +1,6 @@
 import React from "react";
-import "./App.css";
+import "../Style/App.css";
+
 
 const nl2br = require("react-nl2br");
 

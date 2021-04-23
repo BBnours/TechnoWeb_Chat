@@ -6,8 +6,8 @@
   height: 100%;
   width: 100%;
   font-family: 'VT323', monospace;
-  color: green;
 }
+
 
 footer {
   height: 30;
@@ -15,10 +15,14 @@ footer {
   flex-shrink: 0;
 }
 
-header {
-  color: white;
+header{
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 70px;
+  padding: 30px;
+  background: orange;
+  text-align: center;
 }
 
 .channel {
@@ -44,14 +48,10 @@ header {
 }
 
 
-.channels {
-  background-color: #636E72 !important;
-}
 
 .channelBox {
   float: left;
   width: 100%;
-  height: 80px;
   background: #FFF;
   color: #555;
   cursor: pointer;
@@ -120,7 +120,6 @@ li {
 }
 
 .send:hover {
-
   background-color: #2A4B99;
   cursor: pointer;
   color: #fff;

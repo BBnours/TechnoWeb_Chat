@@ -9,7 +9,7 @@ const {
 exports.index = async (req, res) => {
   const channels = await listAllChannels();
 
-  return res.status(200).json(channels);
+  return res.json(channels);
 };
 
 exports.create = async (req, res) => {

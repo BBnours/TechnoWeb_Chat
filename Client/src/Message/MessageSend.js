@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import "./App.css";
+import "../Style/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import { MdSend } from "react-icons/md";
