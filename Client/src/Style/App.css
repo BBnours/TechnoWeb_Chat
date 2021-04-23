@@ -8,6 +8,26 @@
   background-image: url(/image_background_3.jpg) ;
 }
 
+.intro {
+  text-align: center;
+  margin: auto;
+  color: black;
+}
+
+.welcome {
+  text-align: center;
+  margin: auto;
+  color: yellow;
+}
+
+.button_W {
+  background-color: yellow;
+  margin: 50px;
+  text-decoration:none;
+  text-align: center;
+  color: black;
+}
+
 footer {
   height: 1000;
   flex-shrink: 0;
@@ -27,8 +47,8 @@ header{
   flex: 1 1;
   display: flex;
   overflow: hidden;
-  flex-direction: column; 
-  
+  flex-direction: column;
+
 }
 
 .messages {
@@ -80,5 +100,5 @@ li {
 }
 
 .send:hover {
-  cursor: pointer;                                           
+  cursor: pointer;
 }

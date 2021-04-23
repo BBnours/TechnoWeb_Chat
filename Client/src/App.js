@@ -10,6 +10,8 @@ import { Typography, AppBar, Container, Toolbar } from '@material-ui/core';
 import themeBuilder from "./Style/Theme/themeProvider"
 import CssBaseline from '@material-ui/core/CssBaseline';
 
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Welcome from "./Structure/Welcome";
 
 const styles = {
   root: {
@@ -26,10 +28,19 @@ export default () => (
   <ThemeProvider theme={themeBuilder()}>
     <CssBaseline/>
   <div className="app" style={styles.root}>
-    <Header/>
-    <Main />
-    <Footer/>
+      <BrowserRouter>
+          <Switch>
+              <Route path="/app">
+                  <Header />
+                  <Main />
+                  <Footer />
+              </Route>
+              <Route path="/">
+                  <Welcome/>
+              </Route>
+          </Switch>
+      </BrowserRouter>
   </div>
   </ThemeProvider>
-  
+
 );
