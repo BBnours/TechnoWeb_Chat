@@ -46,15 +46,11 @@
 }
 
 .labelLogin{
-  text-align: center;
   margin: auto;
-  margin-right: 50px;
+  margin-right: 5em;
+  margin-bottom: 2em;
 }
 
-.inputLogin{
-  text-align: center;
-  margin: auto;
-}
 
 .intro {
   text-align: center;

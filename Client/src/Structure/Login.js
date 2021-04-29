@@ -8,10 +8,10 @@ export default () => {
     <div className="login">
       <h2>Connexion </h2>
         <label className="labelLogin">Nom</label>
-        <input className="inputLogin" type="text" ></input>
+        <input type="text" ></input>
         <br></br>
         <label className="labelLogin">Password</label>
-        <input className="inputLogin" type="password" ></input>
+        <input  type="password" ></input>
         <Link to="/welcome"><h3 className="button_W">se connecter</h3></Link>
     </div>
   );
