@@ -7,8 +7,6 @@ import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 
-
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -16,18 +14,23 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     marginRight: theme.spacing(2),
     width: 200,
+    height: '85vh',
+    flex: '1 1 auto',
+    display: 'flex',
+    flexDirection: 'column',
   },
+  
   notactive: {
       '&:hover': {
-        backgroundColor: 'white',
-        color: 'orange'
+        backgroundColor: theme.palette.secondary.main,
+        color: theme.palette.primary.main,
       }
   },
   active: {
-    backgroundColor: 'orange',
-    color: 'white',
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.secondary.main,
       '&:hover': {
-        color: 'orange'
+        color: theme.palette.primary.main
       }
   },
   
@@ -44,6 +47,7 @@ function Channels({onChannel}) {
     setSelectedIndex(index);
   }
 
+
   const [all_channels, setChannels] = useState([]);
   useEffect( () => {
     const fetch = async () => {
@@ -55,8 +59,8 @@ function Channels({onChannel}) {
 
   return (
 
-    <div className={classes.root}>
-      <Paper className={classes.paper}>
+    <div  className={classes.root}>
+      <Paper className={classes.paper} elevation={3} >
         <MenuList>
         { all_channels.map( (channel, i) => (
         <MenuItem key={i} 

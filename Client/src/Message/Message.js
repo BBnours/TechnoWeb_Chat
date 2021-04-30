@@ -1,6 +1,6 @@
 import React from "react";
 import "../Style/App.css";
-
+const { DateTime } = require("luxon");
 
 const nl2br = require("react-nl2br");
 
@@ -12,7 +12,7 @@ function Message({ message, i }) {
       <p>
         <span style={{ color: "green" }}>{message.userId}</span>{" "}
         <span style={{ color: "#ff007f" }}>
-          {message.created_at}
+          {(message.created_at).toLocaleString(DateTime.DATETIME_MED)}
         </span>
         <span style={{ color: "#ffff00" }}> ~</span>
         <span style={{ color: "whitesmoke" }}>

@@ -4,12 +4,6 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 function Messages({ messages }) {
 
-  const darkTheme = createMuiTheme({
-    palette: {
-      type: 'dark',
-    },
-  });
-
 
   return (
     <ul>

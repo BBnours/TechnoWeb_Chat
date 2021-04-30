@@ -2,9 +2,10 @@ import React from "react";
 import {useRef, useState} from 'react';
 import Channels from "./Channel/Channels.js";
 import Channel from "./Channel/Channel.js";
-import Intro from "./Structure/Intro"
+import Intro from "./Structure/Intro";
 import { makeStyles } from '@material-ui/core/styles';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { Paper, Toolbar } from '@material-ui/core';
+
 
 
 const styles = {
@@ -14,6 +15,7 @@ const styles = {
     flexDirection: "row",
     overflow: "hidden",
   },
+    
 };
 
 function Main() {
@@ -22,18 +24,16 @@ function Main() {
     setChannel(channel)
   }
 
-  const darkTheme = createMuiTheme({
-    palette: {
-      type: 'dark',
-    },
-  });
-
   return (
-    <ThemeProvider  theme={darkTheme}>
-    <main className="app" style={styles.main} class="bg-warning">
+    <Paper style={{boxShadow: 'none', flex: '1 1 auto',
+    display: 'flex',
+    flexDirection: 'row',}}>
+      <Toolbar />
+    <main className="app-main" style={styles.main}>
       <Channels onChannel={fetchChannel} />
       {channel ? <Channel channel={channel} messages={[]} /> : <Intro />}
-    </main></ThemeProvider>
+    </main>
+    </Paper>
   );
 }
 

@@ -3,25 +3,25 @@ import "../Style/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import { MdSend } from "react-icons/md";
+import TextField from '@material-ui/core/TextField';
+import axios from 'axios';
 const { DateTime } = require("luxon");
 
-function MessageForm({ addMessage }) {
+function MessageForm({ addMessage, channel }) {
   const [content, setContent] = useState("");
 
-  const onSubmit = useCallback(
-    (e) => {
-      if (content) {
-        addMessage({
-          content,
-          author: "Oli",
-          creation: DateTime.now().setZone("local"),
-        });
-      }
-
-      setContent("");
-    },
-    [addMessage, content, setContent]
-  );
+  const onSubmit = async () => {
+    const {data: message} = await axios.post(
+      `http://localhost:8000/api/v1/channels/${channel.id}/messages`
+    , {
+      content: content,
+      userId: 'Oli',
+      created_at: DateTime.now().setZone("local"),
+      
+    })
+    addMessage(message)
+    setContent('')
+  }
 
   const onChange = useCallback(
     (e) => {
@@ -31,26 +31,26 @@ function MessageForm({ addMessage }) {
   );
 
   return (
+    <form  onSubmit={onSubmit} noValidate>
     <div className="form">
-      <input
-        class="form-control"
-        type="text"
-        placeholder="Write here…"
-        className="content"
-        onChange={onChange}
-        name="content"
-        rows={5}
+    <TextField
+        id="outlined-multiline-flexible"
+        label="Message"
+        multiline
+        rowsMax={4}
         value={content}
+        onChange={onChange}
+        variant="outlined"
+        className="content"
       />
       <Button
-        onClick={onSubmit}
         type="submit"
-        variant="success"
         class="btn btn-default btn-sm"
       >
         <MdSend />
       </Button>
     </div>
+    </form>
   );
 }
 
