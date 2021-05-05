@@ -1,43 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 .app {
-  color: #fff;
   position: absolute;
   height: 100%;
   width: 100%;
-  font-family: 'VT323', monospace;
+  font-family: 'Roboto', monospace;
+  background-image: url(/image_background_3.jpg) ;
 }
 
-
 footer {
-  height: 30;
-  background: #FFF;
+  height: 1000;
   flex-shrink: 0;
 }
 
 header{
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
   padding: 30px;
-  background: orange;
   text-align: center;
 }
 
 .channel {
   height: 100%;
-  flex: 1 1 auto;
+  flex: 1 1;
   display: flex;
   overflow: hidden;
-  flex-direction: column;
+  flex-direction: column; 
+  
 }
 
 .messages {
   flex: 1 1 auto;
   height: 100%;
   overflow: auto;
-
 }
 
 .messages ul {
@@ -47,13 +44,9 @@ header{
   list-style-type: 0;
 }
 
-
-
 .channelBox {
   float: left;
   width: 100%;
-  background: #FFF;
-  color: #555;
   cursor: pointer;
   overflow: hidden;
 }
@@ -62,46 +55,15 @@ li {
   list-style-type: none;
 }
 
-.channelBox:hover {
-  color: #555;
-  background: #EEE;
-}
-
-
-.speech-bubble {
-  color: black;
-  position: relative;
-  background: green;
-  border-radius: .4em;
-  margin: 10px;
-}
-
-.speech-bubble:after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 50%;
-  width: 0;
-  height: 0;
-  border: 0.438em solid transparent;
-  border-left-color: green;
-  border-right: 0;
-  border-bottom: 0;
-  margin-top: -0.219em;
-  margin-right: -0.437em;
-}
-
 .root {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  background-color: #565E71;
   padding: 50;
-
 }
 
 .form {
-  border-top: 2px solid #373B44;
+  border-top: 2px solid ;
   display: flex;
   border-radius: .4em
 }
@@ -113,15 +75,10 @@ li {
 }
 
 .send {
-  background-color: #D6DDEC;
   padding: .2rem .5rem;
   border: none;
-
 }
 
 .send:hover {
-  background-color: #2A4B99;
-  cursor: pointer;
-  color: #fff;
-
+  cursor: pointer;                                           
 }

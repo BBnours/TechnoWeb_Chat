@@ -1,9 +1,14 @@
 import React from "react";
 import "../Style/App.css";
+import { Typography, AppBar, Toolbar} from '@material-ui/core';
 
 function Footer() {
   return (
-    <footer class="bg-dark text-center text-lg-start">© 2021 ECE ハク</footer>
+    <AppBar position="static" color="primary">
+              <Typography>
+              © 2021 ECE ハク
+              </Typography>
+        </AppBar>
   );
 }
 
