@@ -8,7 +8,7 @@ function Header() {
   return (
     <AppBar position="static">
   <Toolbar>
-    <Typography >
+    <Typography variant='h3' >
       Ece Chat
     </Typography>
   </Toolbar>

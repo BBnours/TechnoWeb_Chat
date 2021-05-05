@@ -1,10 +1,22 @@
 import React from "react";
-import Message from "./Message";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import Message from "./Message"
+import Card from '@material-ui/core/Card';
 import { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+
 const { DateTime } = require("luxon");
 
+const useStyles = makeStyles((theme) => ({
+  dateCard: {
+    position:'relative',
+    display: 'flex',
+    justifyContent: 'center',
+  },
+}));
+
+
 function Messages({ messages }) {
+  const classes = useStyles();
   const [date, datePass] = useState([]);
 
   const addDate = (Newdate) => {
@@ -12,10 +24,9 @@ function Messages({ messages }) {
   };
 
   const uniqueTags = [];
-  const unique = [];
   messages.map((msg) => {
-    if (uniqueTags.indexOf(DateTime.fromISO(msg.created_at).toFormat("dd/MM")) === -1) {
-      uniqueTags.push(DateTime.fromISO(msg.created_at).toFormat("dd/MM"));
+    if (uniqueTags.indexOf(DateTime.fromISO(msg.created_at).toFormat("dd MM yyyy")) === -1) {
+      uniqueTags.push(DateTime.fromISO(msg.created_at).toFormat("dd MM yyyy"));
     }
   });
 
@@ -35,10 +46,10 @@ function Messages({ messages }) {
     <div>
       {uniqueTags.map((msg) => (
           <div>
-            <span> {msg} </span>
+            <Card className={classes.dateCard} > -- {msg} -- </Card>
 
             {messages.map((message, i) => {
-              if(msg== DateTime.fromISO(message.created_at).toFormat("dd/MM"))
+              if(msg== DateTime.fromISO(message.created_at).toFormat("dd MM yyyy"))
                   return (
                       <ul>
                         <Message message={message} i={i} />
