@@ -9,7 +9,8 @@ import themeBuilder from "./Style/Theme/themeProvider"
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Welcome from "./Structure/Welcome";
-import Login from "./Structure/Login";
+import Login from "./login/Login";
+import Compte from "./login/Compte";
 
 function handleScroll (e) {
   if (e.target.classList && e.target.classList.contains("on-scrollbar") === false) {
@@ -46,6 +47,9 @@ export default () => (
               </Route>
               <Route path="/welcome">
                   <Welcome/>
+              </Route>
+              <Route path="/nv_compte">
+                  <Compte/>
               </Route>
               <Route path="/">
                   <Login/>
