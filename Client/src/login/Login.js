@@ -13,6 +13,7 @@ export default () => {
         <label className="labelLogin">Password</label>
         <input  type="password" ></input>
         <Link to="/welcome"><h3 className="button_W">se connecter</h3></Link>
+      <Link to="/nv_compte"><h3 className="button_W">créer un compte</h3></Link>
     </div>
   );
 }
