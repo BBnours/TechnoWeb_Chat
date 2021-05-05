@@ -9,6 +9,7 @@ import { Typography, AppBar, Container, Toolbar } from '@material-ui/core';
 import Fab from '@material-ui/core/Fab';
 
 
+
 const useStyles = (theme) => ({
   root: {
     height: '100%',
@@ -57,7 +58,7 @@ function Channel({ channel }) {
 
   return (
     <Paper elevation={3} style={{ 
-      height: '85vh',
+      height: '80vh',
       flex: '1 1 auto',
       display: 'flex',
       flexDirection: 'column',
@@ -65,7 +66,7 @@ function Channel({ channel }) {
       overflowX: 'auto'
     }}>
       
-      <div>
+      
       <div className="messages">
         ----------------------------------------------------------------------
         <h1>Messages for {channel.name}</h1>
@@ -74,10 +75,8 @@ function Channel({ channel }) {
         onScrollDown={onScrollDown}
         ref={listRef}/>
       </div>
-
-      <div style={{ position: 'absolute',bottom: '10px',width: '295px'}}>
+      <div style={{ position: 'sticky',bottom: '0',width: '295px'}}>
       <MessageForm addMessage={addMessage} channel={channel}   />
-      </div>
       </div>
     </Paper>
   );

@@ -25,10 +25,7 @@ function Main() {
   }
 
   return (
-    <Paper style={{boxShadow: 'none', flex: '1 1 auto',
-    display: 'flex',
-    flexDirection: 'row',}}>
-      <Toolbar />
+    <Paper >
     <main className="app-main" style={styles.main}>
       <Channels onChannel={fetchChannel} />
       {channel ? <Channel channel={channel} messages={[]} /> : <Intro />}
