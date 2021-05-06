@@ -9,6 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import { Typography } from "@material-ui/core";
 import ChannelForm from "./ChannelForm.js"
+import { Scrollbars } from 'react-custom-scrollbars';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,11 +17,14 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     marginRight: theme.spacing(2),
-    width: 150,
+    width: 250,
     height: "85vh",
     flex: "1 1 auto",
     display: "flex",
     flexDirection: "column",
+    overflow: 'auto',
+    scrollbarWidth: 'thin',
+  scrollbarColor: 'blue orange',
   },
 
   notactive: {
@@ -38,12 +42,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
+
 function Channels({ onChannel }) {
   useEffect(()=>{
     fetchChannels()
   }, []) 
   const classes = useStyles();
-  const [selectedIndex, setSelectedIndex] = useState(1);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [all_channels, setChannels] = useState([]);
 
   const addChannel = (newChann) => {
@@ -60,9 +67,7 @@ function Channels({ onChannel }) {
     setChannels(channels)
   }
 
-  if(all_channels == []){
-    fetchChannels()
-  }
+  
 
 
   return (

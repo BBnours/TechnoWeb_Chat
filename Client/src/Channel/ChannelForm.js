@@ -11,24 +11,33 @@ import axios from 'axios';
 
 function ChannelForm({addChannel}) {
   const [open, setOpen] = React.useState(false);
-  const [content, setContent] = useState("");
+  const [allValues, setAllValues] = useState({
+    channelName: '',
+    idChann: '',
+ });
 
   const onSubmit = async () => {
     const {data: channel} = await axios.post(
       `http://localhost:8000/api/v1/channels/`
     , {
-      name :content,
+      name :allValues.channelName,
         })
 
         handleClose()
         addChannel(channel)
-        setContent('')
+
+        setAllValues( prevValues => {
+          return {
+            channelName: '',
+            idChann: '',
+         }
+        })
   }
   const onChange = useCallback(
     (e) => {
-      setContent(e.target.value);
-    },
-    [setContent]
+      setAllValues( prevValues => {
+        return { ...prevValues,[e.target.name]: e.target.value}
+      })}
   );
 
   const handleClickOpen = () => {
@@ -53,9 +62,15 @@ function ChannelForm({addChannel}) {
           <TextField
             autoFocus
             onChange={onChange}
-            id="name"
+            name="channelName"
             label="Channel Name"
-            value={content}
+            value= {allValues.channelName}
+          />
+          <TextField
+            onChange={onChange}
+            name="idChann"
+            label="id chann"
+            value= {allValues.id}
           />
         </DialogContent>
         <DialogActions>

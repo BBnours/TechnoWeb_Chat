@@ -10,14 +10,12 @@ function MessageForm({ addMessage, channel }) {
   const [content, setContent] = useState("");
   
 
-  const onSubmit = async () => {
+  const onSubmit = async (e) => {
     const {data: message} = await axios.post(
       `http://localhost:8000/api/v1/channels/${channel.id}/messages`
     , {
       content: content,
       userId: 'Oli',
-      
-      
     })
     addMessage(message)
     setContent('')
@@ -31,7 +29,7 @@ function MessageForm({ addMessage, channel }) {
   );
 
   return (
-    <form  onSubmit={onSubmit} noValidate>
+    <form novalidate>
     <div className="form">
     <TextField
         id="outlined-multiline-flexible"
@@ -45,7 +43,10 @@ function MessageForm({ addMessage, channel }) {
       />
       <Button
         type="submit"
-        class="btn btn-default btn-sm"
+        class="btn-sm"
+        onClick={(e) => {
+          e.preventDefault();
+          onSubmit();}}
       >
         <MdSend />
       </Button>
