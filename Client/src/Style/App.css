@@ -64,12 +64,13 @@
   color: yellow;
 }
 
-.button_W {
-  background-color: yellow;
+.button {
+  background-color: black;
   margin: 50px;
+  text-align:right;
   text-decoration:none;
   text-align: center;
-  color: black;
+  color: white;
 }
 
 footer {
