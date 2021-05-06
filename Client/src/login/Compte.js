@@ -1,31 +1,89 @@
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import {} from 'react';
 import "../Style/App.css";
 import {Link} from "react-router-dom";
 import axios from "axios";
 
 export default () => {
+    const [all_users, setUsers] = useState([]);
+    const [allValues, setAllValues] = useState({
+        nom: '',
+        email: '',
+        password: ''
+    });
+    const changeHandler = e => {
+        setAllValues({...allValues, [e.target.name]: e.target.value})
+    }
 
-    const [nom, setNom] = useState("");
-    const [prenom, setPrenom] = useState("");
-    const [password, setPassword] = useState("");
+    const fetchUsers = async () => {
+        setUsers([])
+        const {data: users} = await axios.get(`http://localhost:8000/api/v1/users/`)
+        setUsers(users)
+    }
 
-    function activateLasers( ) {
-        console.log('toto');
-    };
+    // if(all_users == []){
+    //     fetchUsers()
+    // }
+    //
+    const addUser = (newUser) => {
+        fetchUsers()
+    }
+
+    const onSubmit = async () => {
+        const {data: user} = await axios.post(
+            `http://localhost:8000/api/v1/users/`
+            , {
+                name: allValues.nom,
+                email: allValues.email,
+                password: allValues.password,
+            })
+
+        addUser(user)
+        setAllValues({
+            nom: '',
+            email: '',
+            password: ''
+        })
+    }
 
   return (
     <div className="login">
-      <h2>Connexion </h2>
-        <label className="labelLogin">Nom</label>
-        <input type="text" value={nom}></input>
-        <br></br>
-      <label className="labelLogin">Prenom</label>
-      <input type="text" value={prenom}></input>
-      <br></br>
-        <label className="labelLogin">Password</label>
-        <input  type="password" value={password}></input>
-        <Link onClick={activateLasers()} to="/welcome"><h3 className="button_W">continuer</h3></Link>
+      <h2>Création Compte </h2>
+        <form>
+            <div className="form-group">
+                <input
+                    placeholder="Nom"
+                    name="nom"
+                    id="nom"
+                    type="text"
+                    onChange={changeHandler}
+                >
+                </input>
+            </div>
+            <div className="form-group">
+                <input
+                    placeholder="Email"
+                    name="email"
+                    id="email"
+                    type="text"
+                    onChange={changeHandler}
+                >
+                </input>
+            </div>
+            <div className="form-group">
+                <input
+                    placeholder="Password"
+                    name="password"
+                    id="password"
+                    type="password"
+                    onChange={changeHandler}
+                >
+                </input>
+            </div>
+            <button onClick={onSubmit}>
+                <Link to={"/welcome"}>continuer</Link>
+            </button>
+        </form>
     </div>
   );
 }
