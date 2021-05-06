@@ -40,9 +40,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
-
 function Channels({ onChannel }) {
   useEffect(()=>{
     fetchChannels()
@@ -64,8 +61,6 @@ function Channels({ onChannel }) {
     const {data: channels} = await axios.get(`http://localhost:8000/api/v1/channels/`)
     setChannels(channels)
   }
-
-  
 
 
   return (

@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function Messages({ messages }) {
+function Messages({ messages , channel, fetchMessages}) {
   const classes = useStyles();
   const [date, datePass] = useState([]);
 
@@ -52,7 +52,7 @@ function Messages({ messages }) {
               if(msg== DateTime.fromISO(message.created_at).toFormat("dd MM yyyy"))
                   return (
                       <ul>
-                        <Message message={message} i={i} />
+                        <Message message={message} i={i} channel={channel} fetchMessages={fetchMessages} />
                       </ul>
                   )
             })}

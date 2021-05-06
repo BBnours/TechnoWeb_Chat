@@ -113,3 +113,18 @@ li {
 .send:hover {
   cursor: pointer;                                           
 }
+
+#messageDiv{
+  flex : 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+
+.mdHover{
+  visibility: hidden;
+}
+
+#messageDiv:hover  .mdHover {
+  visibility: visible;
+}

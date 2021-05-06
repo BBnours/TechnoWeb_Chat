@@ -52,7 +52,7 @@ function MessageForm({ addMessage, channel }) {
       />
       <Button
         variant="contained"
-        color="secopndary"
+        color="secondary"
         onClick={(e) => {
           e.preventDefault();
           onSubmit();}}

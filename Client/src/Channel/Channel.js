@@ -59,7 +59,7 @@ function Channel({ channel }) {
         ----------------------------------------------------------------------
         <h1>Messages for {channel.name}</h1>
         ----------------------------------------------------------------------
-        <Messages messages={messages} channel={channel}/>
+        <Messages messages={messages} channel={channel} fetchMessages={fetchMessages}/>
       </div>
       <div style={{ position: 'sticky',bottom: '0'}}>
       <MessageForm addMessage={addMessage} channel={channel}   />
