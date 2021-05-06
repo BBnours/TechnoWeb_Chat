@@ -1,12 +1,21 @@
 import React, { useState, useCallback } from "react";
 import "../Style/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from "react-bootstrap/Button";
 import { MdSend } from "react-icons/md";
 import TextField from '@material-ui/core/TextField';
+import Button from "@material-ui/core/Button";
 import axios from 'axios';
+import { makeStyles } from "@material-ui/core/styles";
+
+
+const useStyles = makeStyles((theme) => ({
+  Send: {
+    backgroundColor: theme.palette.secondary.main
+  },
+}));
 
 function MessageForm({ addMessage, channel }) {
+  const classes = useStyles();
   const [content, setContent] = useState("");
   
 
@@ -42,8 +51,8 @@ function MessageForm({ addMessage, channel }) {
         className="content"
       />
       <Button
-        type="submit"
-        class="btn-sm"
+        variant="contained"
+        color="secopndary"
         onClick={(e) => {
           e.preventDefault();
           onSubmit();}}

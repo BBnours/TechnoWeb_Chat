@@ -61,7 +61,7 @@ function Channel({ channel }) {
         ----------------------------------------------------------------------
         <Messages messages={messages} channel={channel}/>
       </div>
-      <div style={{ position: 'sticky',bottom: '0',width: '295px'}}>
+      <div style={{ position: 'sticky',bottom: '0'}}>
       <MessageForm addMessage={addMessage} channel={channel}   />
       </div>
     </Paper>
