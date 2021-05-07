@@ -8,7 +8,7 @@ import AuthService from "../../Services/auth.service";
 
 export default () => {
   const [allValues, setAllValues] = useState({
-    nom: '',
+    email: '',
     password: ''
   });
 
@@ -17,7 +17,7 @@ export default () => {
   };
 
   const onSubmit = async () => {
-      await AuthService.login(allValues.nom, allValues.password);
+      await AuthService.login(allValues.email, allValues.password);
   }
 
     return (
@@ -26,9 +26,9 @@ export default () => {
       <form>
         <div className="form-group">
           <input
-              placeholder="Nom"
-              name="nom"
-              id="nom"
+              placeholder="Email"
+              name="email"
+              id="email"
               type="text"
               onChange={changeHandler}>
           </input>
