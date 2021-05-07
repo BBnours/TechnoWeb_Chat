@@ -112,6 +112,7 @@ function Message({ message, i, fetchMessages }) {
                 variant="contained"
                 color="secondary"
                 onClick={(e) => {
+                  e.preventDefault();
                   onModify();
                 }}
               >

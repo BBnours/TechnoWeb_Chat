@@ -56,9 +56,6 @@ exports.update = async (req, res) => {
   if (!body.content) {
     return res.status(400).send("Content is requiered");
   }
-  if (!body.userId) {
-    return res.status(400).send("UserId is requiered");
-  }
 
   try {
     const messageToUpdate = await findMessage(messageId);
@@ -73,7 +70,7 @@ exports.delete = async (req, res) => {
   const messageId = req.params.messageId;
   try {
     const messageTodelete = await findMessage(messageId);
-    await deleteMessage(messageTodelete);
+    await deleteMessage(messageTodelete.key);
     return res.sendStatus(204);
   } catch (err) {
     res.status(400);

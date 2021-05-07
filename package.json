@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/BBnours/TechnoWeb_Chat/issues"
   },
-  "homepage": "https://github.com/BBnours/TechnoWeb_Chat#readme"
+  "homepage": "https://github.com/BBnours/TechnoWeb_Chat#readme",
+  "dependencies": {
+    "react-custom-scrollbars": "^4.2.1"
+  }
 }

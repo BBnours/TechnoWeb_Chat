@@ -78,7 +78,7 @@ const updateMessage = async (messageId, messageToUpdate, body) => {
     content: body.content,
     created_at: messageToUpdate.value.created_at,
     modified_at: new Date().toISOString(),
-    userId: body.userId,
+    userId: messageToUpdate.value.userId,
   };
 
   return new Promise((resolve, reject) => {
