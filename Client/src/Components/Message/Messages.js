@@ -44,18 +44,19 @@ function Messages({ messages , channel, fetchMessages}) {
 
   return (
     <div>
-      {uniqueTags.map((msg) => (
-          <div>
+      {uniqueTags.map((msg,k) => (
+          <div key={k}>
             <Card className={classes.dateCard} > -- {msg} -- </Card>
-
+            <ul>
             {messages.map((message, i) => {
               if(msg== DateTime.fromISO(message.created_at).toFormat("dd MM yyyy"))
                   return (
-                      <ul>
-                        <Message message={message} i={i} channel={channel} fetchMessages={fetchMessages} />
-                      </ul>
+                      
+                        <Message key={i} message={message} i={i} channel={channel} fetchMessages={fetchMessages} />
+                      
                   )
             })}
+            </ul>
           </div>
         )
       )}

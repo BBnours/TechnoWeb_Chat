@@ -79,7 +79,7 @@ function Message({ message, i, fetchMessages }) {
         style={{ display: "flex", flexDirection: "column", padding: "10px" }}
       >
         <span style={{ color: "whitesmoke" }}>{message.userId}</span>
-        <li key={i}>
+        <li>
           <Card className={classes.bubble}>
             <span style={{ color: "black" }}>
               {nl2br(" " + message.content)}

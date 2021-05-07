@@ -39,7 +39,7 @@ function MessageForm({ addMessage, channel }) {
   );
 
   return (
-    <form novalidate>
+    <form noValidate>
     <div className="form">
     <TextField
         id="outlined-multiline-flexible"
