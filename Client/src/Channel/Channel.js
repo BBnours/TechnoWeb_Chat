@@ -24,10 +24,8 @@ const useStyles = (theme) => ({
 
 function Channel({ channel }) {
 
-  const listRef = useRef();
   const channelId = useRef()
   const [messages, setMessages] = useState([])
-  const [scrollDown, setScrollDown] = useState(false)
 
 
   const addMessage = (newMessage) => {
@@ -37,9 +35,6 @@ function Channel({ channel }) {
     setMessages([])
     const {data: messages} = await axios.get(`http://localhost:8000/api/v1/channels/${channel.id}/messages`)
     setMessages(messages)
-    if(listRef.current){
-      listRef.current.scroll()
-    }
   }
   
   if(channelId.current !== channel.id){
@@ -47,13 +42,6 @@ function Channel({ channel }) {
     channelId.current = channel.id
   }
 
-
-  const onScrollDown = (scrollDown) => {
-    setScrollDown(scrollDown)
-  }
-  const onClickScroll = () => {
-    listRef.current.scroll()
-  }
 
 
   return (
@@ -71,11 +59,9 @@ function Channel({ channel }) {
         ----------------------------------------------------------------------
         <h1>Messages for {channel.name}</h1>
         ----------------------------------------------------------------------
-        <Messages messages={messages} channel={channel}
-        onScrollDown={onScrollDown}
-        ref={listRef}/>
+        <Messages messages={messages} channel={channel} fetchMessages={fetchMessages}/>
       </div>
-      <div style={{ position: 'sticky',bottom: '0',width: '295px'}}>
+      <div style={{ position: 'sticky',bottom: '0'}}>
       <MessageForm addMessage={addMessage} channel={channel}   />
       </div>
     </Paper>

@@ -4,7 +4,6 @@ import "../Style/App.css";
 import Paper from "@material-ui/core/Paper";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
-import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import { Typography } from "@material-ui/core";
@@ -16,11 +15,14 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     marginRight: theme.spacing(2),
-    width: 150,
+    width: 250,
     height: "85vh",
     flex: "1 1 auto",
     display: "flex",
     flexDirection: "column",
+    overflow: 'auto',
+    scrollbarWidth: 'thin',
+  scrollbarColor: 'blue orange',
   },
 
   notactive: {
@@ -43,7 +45,7 @@ function Channels({ onChannel }) {
     fetchChannels()
   }, []) 
   const classes = useStyles();
-  const [selectedIndex, setSelectedIndex] = useState(1);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [all_channels, setChannels] = useState([]);
 
   const addChannel = (newChann) => {
@@ -58,10 +60,6 @@ function Channels({ onChannel }) {
     setChannels([])
     const {data: channels} = await axios.get(`http://localhost:8000/api/v1/channels/`)
     setChannels(channels)
-  }
-
-  if(all_channels == []){
-    fetchChannels()
   }
 
 

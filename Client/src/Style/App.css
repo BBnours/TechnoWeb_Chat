@@ -1,5 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
+
+::-webkit-scrollbar-track {
+  box-shadow: none !important;
+  background-color: transparent;
+}
+::-webkit-scrollbar {
+  width: 3px !important;
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.on-scrollbar{
+  scrollbar-width: thin; 
+}
+
+.on-scrollbar::-webkit-scrollbar-track {
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+.on-scrollbar::-webkit-scrollbar {
+  width: 6px !important;
+  background-color: transparent;
+}
+
+.on-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #acacac;
+}
+
+
 .app {
   position: absolute;
   height: 100%;
@@ -63,9 +95,8 @@ li {
 }
 
 .form {
-  border-top: 2px solid ;
   display: flex;
-  border-radius: .4em
+  flex: 1 1 auto;
 }
 
 .content {
@@ -81,4 +112,22 @@ li {
 
 .send:hover {
   cursor: pointer;                                           
+}
+
+#messageDiv{
+  flex : 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+
+.mdHover{
+  visibility: hidden;
+}
+
+
+
+
+#messageDiv:hover  .mdHover {
+  visibility: visible;
 }
