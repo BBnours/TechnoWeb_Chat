@@ -158,9 +158,31 @@ li {
   visibility: hidden;
 }
 
-
-
-
 #messageDiv:hover  .mdHover {
   visibility: visible;
+}
+
+#SettingsIcon{
+  height: 60px; 
+  width: 60px; 
+
+}
+
+.SettingsDiv{
+  position: absolute;
+  right: 0;
+
+}
+
+.cardSetting{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 50vh;
+  width: 50vh;
+}
+
+.settingInfo{
+  margin-bottom: 50px;
 }

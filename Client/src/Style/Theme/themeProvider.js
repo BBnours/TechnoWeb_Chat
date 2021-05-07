@@ -25,6 +25,9 @@ function ThemeBuilder() {
               main: blue[700],
               contrastText: '#000',
             },
+            third : {
+              main: "#f2efe2"
+            }
           },
           '@global': {
             '*::-webkit-scrollbar': {
