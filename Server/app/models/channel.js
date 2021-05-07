@@ -27,8 +27,9 @@ const createNewChannel = (body) => {
   const channel = {
     id: uuid(),
     name: body.name,
+    membership : body.membership,
   };
-
+  
   return new Promise((resolve, reject) => {
     db.put(`channels:${channel.id}`, JSON.stringify(channel), (err) => {
       if (err) {
