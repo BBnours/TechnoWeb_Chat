@@ -22,4 +22,7 @@ app.use("/api/v1/users", userRoutes);
 const messageRoutes = require("./app/routes/message");
 app.use("/api/v1/", messageRoutes);
 
+const loginRoutes = require('./app/routes/login_routes');
+app.use('/api/v1/login', loginRoutes);
+
 module.exports = app;
