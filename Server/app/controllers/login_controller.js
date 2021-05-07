@@ -8,7 +8,7 @@ exports.login = async (req, res) => {
     else {
         try{
             const token = await getLogin(body);
-            res.status(201).json({access_token : token});
+            return res.status(201).json({accessToken : token});
 
     } catch(err) {
 

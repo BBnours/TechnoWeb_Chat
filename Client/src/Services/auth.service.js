@@ -2,6 +2,7 @@ import axios from "axios";
 import {} from 'react';
 
 const login = (email, password) => {
+    localStorage.clear();
     return axios
         .post('http://localhost:8000/api/v1/login', {
             email,
