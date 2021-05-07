@@ -3,7 +3,7 @@ import "../../Style/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { AppBar,Toolbar,IconButton , Typography} from '@material-ui/core';
 import {Link} from "react-router-dom";
-import SettingsButton from "../Settings/SettingsButton";
+import SettingsButton from "../../Settings/SettingsButton";
 
 function Header() {
   return (

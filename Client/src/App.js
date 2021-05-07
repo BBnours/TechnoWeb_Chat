@@ -8,9 +8,9 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import themeBuilder from "./Style/Theme/themeProvider";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Welcome from "./Structure/Welcome";
-import Login from "./login/Login";
-import Compte from "./login/Compte";
+import Welcome from "./Components/Structure/Welcome";
+import Login from "./Components/Login/Login";
+import Compte from "./Components/Login/Compte";
 import Settings from "./Settings/Settings";
 
 
@@ -47,7 +47,7 @@ export default () => (
             <Footer />
           </Route>
           <Route path="/welcome">
-            <Welcome />
+            <Welcome/>
           </Route>
           <Route path="/nv_compte">
             <Compte />

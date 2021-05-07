@@ -52,7 +52,7 @@ export default () => {
 
   return (
     <div className="login">
-      <h2>CrÃ©ation Compte </h2>
+      <h2>Création Compte </h2>
         <form>
             <div className="form-group">
                 <input
