@@ -1,6 +1,6 @@
 import React from "react";
 import {} from 'react';
-import "../Style/App.css";
+import "../../Style/App.css";
 import {Link} from "react-router-dom";
 
 export default () => {

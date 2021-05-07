@@ -1,15 +1,14 @@
 import React, {useState} from "react";
 import {} from 'react';
-import "../Style/App.css";
+import "../../Style/App.css";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import AuthService from "../../Services/auth.service";
 
 export default () => {
-  let check;
-  const history = useHistory();
   const [allValues, setAllValues] = useState({
-    nom: '',
+    email: '',
     password: ''
   });
 
@@ -18,18 +17,7 @@ export default () => {
   };
 
   const onSubmit = async () => {
-    const {data: users} = await axios.get(
-        `http://localhost:8000/api/v1/users/`
-    )
-    console.log(users)
-    for (let i = 0; i < users.length; i++) {
-      if (allValues.nom == users[i].name && allValues.password == users[i].password) {
-        check = true;
-      }
-    }
-    if (check != true){
-      history.push("/");
-    }
+      await AuthService.login(allValues.email, allValues.password);
   }
 
     return (
@@ -38,9 +26,9 @@ export default () => {
       <form>
         <div className="form-group">
           <input
-              placeholder="Nom"
-              name="nom"
-              id="nom"
+              placeholder="Email"
+              name="email"
+              id="email"
               type="text"
               onChange={changeHandler}>
           </input>

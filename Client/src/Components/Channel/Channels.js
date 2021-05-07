@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
-import "../Style/App.css";
+import "../../Style/App.css";
 import Paper from "@material-ui/core/Paper";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
@@ -8,6 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import { Typography } from "@material-ui/core";
 import ChannelForm from "./ChannelForm.js"
+import authHeader from "../../Services/auth-header";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,7 +59,7 @@ function Channels({ onChannel }) {
 
   const fetchChannels = async () => {
     setChannels([])
-    const {data: channels} = await axios.get(`http://localhost:8000/api/v1/channels/`)
+    const {data: channels} = await axios.get(`http://localhost:8000/api/v1/channels/`, { headers: authHeader() })
     setChannels(channels)
   }
 

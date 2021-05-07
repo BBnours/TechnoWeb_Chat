@@ -1,5 +1,5 @@
 import React, { useState, useRef} from "react";
-import "../Style/App.css";
+import "../../Style/App.css";
 import MessageForm from "../Message/MessageSend.js";
 import Paper from '@material-ui/core/Paper';
 import Messages from "../Message/Messages.js";
@@ -7,6 +7,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import axios from 'axios';
 import { Typography, AppBar, Container, Toolbar } from '@material-ui/core';
 import Fab from '@material-ui/core/Fab';
+import authHeader from "../../Services/auth-header";
 
 
 
@@ -33,7 +34,7 @@ function Channel({ channel }) {
   }
   const fetchMessages = async () => {
     setMessages([])
-    const {data: messages} = await axios.get(`http://localhost:8000/api/v1/channels/${channel.id}/messages`)
+    const {data: messages} = await axios.get(`http://localhost:8000/api/v1/channels/${channel.id}/messages`, { headers: authHeader() })
     setMessages(messages)
   }
   

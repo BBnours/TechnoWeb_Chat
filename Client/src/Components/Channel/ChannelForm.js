@@ -8,6 +8,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import axios from 'axios';
+import authHeader from "../../Services/auth-header";
 
 function ChannelForm({addChannel}) {
   const [open, setOpen] = React.useState(false);
@@ -21,7 +22,7 @@ function ChannelForm({addChannel}) {
       `http://localhost:8000/api/v1/channels/`
     , {
       name :allValues.channelName,
-        })
+        }, { headers: authHeader() })
 
         handleClose()
         addChannel(channel)

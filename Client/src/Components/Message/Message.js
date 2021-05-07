@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useRef, useState, useCallback } from "react";
-import "../Style/App.css";
-import "../Style/message.css";
+import "../../Style/App.css";
+import "../../Style/message.css";
 import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
 import { MdSend } from "react-icons/md";
@@ -11,6 +11,7 @@ import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import { MdCreate, MdDelete } from "react-icons/md";
 import IconButton from "@material-ui/core/IconButton";
+import authHeader from "../../Services/auth-header";
 
 const nl2br = require("react-nl2br");
 
@@ -58,7 +59,7 @@ function Message({ message, i, fetchMessages }) {
   });
 
   const onDelete = async () => {
-    await axios.delete(`http://localhost:8000/api/v1/messages/${message.id}`);
+    await axios.delete(`http://localhost:8000/api/v1/messages/${message.id}`, { headers: authHeader() });
     fetchMessages();
   };
 
@@ -66,7 +67,7 @@ function Message({ message, i, fetchMessages }) {
     await axios.put(`http://localhost:8000/api/v1/messages/${message.id}`, 
     { 
       content: content ,
-    });
+    }, { headers: authHeader() });
     fetchMessages();
     setContent('');
   };

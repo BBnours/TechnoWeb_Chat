@@ -1,5 +1,5 @@
 import React from "react";
-import "../Style/App.css";
+import "../../Style/App.css";
 import { Typography, AppBar, Toolbar} from '@material-ui/core';
 
 function Footer() {

@@ -1,10 +1,13 @@
-import React, {useCallback, useState} from "react";
+import React, {Component, useCallback, useState} from "react";
 import {} from 'react';
-import "../Style/App.css";
-import {Link} from "react-router-dom";
+import "../../Style/App.css";
+import {Link, useHistory} from "react-router-dom";
 import axios from "axios";
+import authHeader from "../../Services/auth-header";
 
 export default () => {
+
+    const history = useHistory();
     const [all_users, setUsers] = useState([]);
     const [allValues, setAllValues] = useState({
         nom: '',
@@ -20,35 +23,36 @@ export default () => {
         const {data: users} = await axios.get(`http://localhost:8000/api/v1/users/`)
         setUsers(users)
     }
-
-    // if(all_users == []){
-    //     fetchUsers()
-    // }
-    //
+    
     const addUser = (newUser) => {
         fetchUsers()
     }
 
     const onSubmit = async () => {
-        const {data: user} = await axios.post(
-            `http://localhost:8000/api/v1/users/`
-            , {
-                name: allValues.nom,
-                email: allValues.email,
-                password: allValues.password,
+        if (allValues.email != '' || allValues.nom != '' || allValues.password != '') {
+            const {data: user} = await axios.post(
+                `http://localhost:8000/api/v1/users/`
+                , {
+                    name: allValues.nom,
+                    email: allValues.email,
+                    password: allValues.password,
+                }, { headers: authHeader() })
+            fetchUsers()
+            addUser(user)
+            setAllValues({
+                nom: '',
+                email: '',
+                password: ''
             })
-
-        addUser(user)
-        setAllValues({
-            nom: '',
-            email: '',
-            password: ''
-        })
+        }
+        else {
+            history.push("/nv_compte");
+        }
     }
 
   return (
     <div className="login">
-      <h2>Création Compte </h2>
+      <h2>CrÃ©ation Compte </h2>
         <form>
             <div className="form-group">
                 <input
