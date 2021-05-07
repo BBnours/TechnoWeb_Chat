@@ -14,7 +14,7 @@
 }
 
 .on-scrollbar{
-  scrollbar-width: thin; 
+  scrollbar-width: thin;
 }
 
 .on-scrollbar::-webkit-scrollbar-track {
@@ -40,6 +40,39 @@
   background-image: url(/image_background_3.jpg) ;
 }
 
+.login {
+  text-align: center;
+  margin: auto;
+}
+
+.labelLogin{
+  margin: auto;
+  margin-right: 5em;
+  margin-bottom: 2em;
+}
+
+
+.intro {
+  text-align: center;
+  margin: auto;
+  color: black;
+}
+
+.welcome {
+  text-align: center;
+  margin: auto;
+  color: yellow;
+}
+
+.button {
+  background-color: black;
+  margin: 50px;
+  text-align:right;
+  text-decoration:none;
+  text-align: center;
+  color: white;
+}
+
 footer {
   height: 1000;
   flex-shrink: 0;
@@ -59,8 +92,8 @@ header{
   flex: 1 1;
   display: flex;
   overflow: hidden;
-  flex-direction: column; 
-  
+  flex-direction: column;
+
 }
 
 .messages {
@@ -111,7 +144,7 @@ li {
 }
 
 .send:hover {
-  cursor: pointer;                                           
+  cursor: pointer;
 }
 
 #messageDiv{

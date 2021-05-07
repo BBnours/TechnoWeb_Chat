@@ -7,12 +7,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { ThemeProvider } from '@material-ui/core/styles';
 import themeBuilder from "./Style/Theme/themeProvider"
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Welcome from "./Structure/Welcome";
+import Login from "./login/Login";
+import Compte from "./login/Compte";
 
 function handleScroll (e) {
   if (e.target.classList && e.target.classList.contains("on-scrollbar") === false) {
       e.target.classList.add("on-scrollbar");
   }
 }
+
 
 const styles = {
   root: {
@@ -33,10 +38,26 @@ export default () => (
   <ThemeProvider theme={themeBuilder()}>
     <CssBaseline/>
   <div className="app" style={styles.root}>
-    <Header/>
-    <Main />
-    <Footer/>
+      <BrowserRouter>
+          <Switch>
+              <Route path="/app">
+                  <Header />
+                  <Main />
+                  <Footer />
+              </Route>
+              <Route path="/welcome">
+                  <Welcome/>
+              </Route>
+              <Route path="/nv_compte">
+                  <Compte/>
+              </Route>
+              <Route path="/">
+                  <Login/>
+              </Route>
+
+          </Switch>
+      </BrowserRouter>
   </div>
   </ThemeProvider>
-  
+
 );

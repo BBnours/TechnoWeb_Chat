@@ -1,14 +1,11 @@
 import React from "react";
 import {} from 'react';
-// Layout
-
-
+import "../Style/App.css";
 
 export default () => {
   return (
-    <div>
-      Hello World!
-          
+    <div className="intro">
+      <h2>Vous n'avez pas de channel, veuillez en créer un </h2>
     </div>
   );
 }
