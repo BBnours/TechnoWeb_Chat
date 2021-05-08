@@ -14,14 +14,23 @@ function ChannelForm({addChannel}) {
   const [open, setOpen] = React.useState(false);
   const [allValues, setAllValues] = useState({
     channelName: '',
-    idChann: '',
  });
+ const [members, setMembers] = useState([]);
 
   const onSubmit = async () => {
+
+      const {data: users} = await axios.get(
+        `http://localhost:8000/api/v1/users/`)
+
+        const memberRequests = users.email.reduce((result, user) => {
+          return members.includes(user.email) ? [...result, user.id] : result;
+        }, [])
+
     const {data: channel} = await axios.post(
       `http://localhost:8000/api/v1/channels/`
     , {
       name :allValues.channelName,
+      membership : memberRequests
         }, { headers: authHeader() })
 
         handleClose()
@@ -30,15 +39,20 @@ function ChannelForm({addChannel}) {
         setAllValues( prevValues => {
           return {
             channelName: '',
-            idChann: '',
-         }
-        })
-  }
+         }})
+          setMembers([])
+        }
+
   const onChange = useCallback(
     (e) => {
       setAllValues( prevValues => {
         return { ...prevValues,[e.target.name]: e.target.value}
-      })}
+      })
+    setMembers(prevValues => { 
+      if(e.target.name==="membership")
+        return [...prevValues, e.target.value]
+      })
+    }
   );
 
   const handleClickOpen = () => {
@@ -71,7 +85,7 @@ function ChannelForm({addChannel}) {
             onChange={onChange}
             name="idChann"
             label="id chann"
-            value= {allValues.id}
+            value= {allValues.membership}
           />
         </DialogContent>
         <DialogActions>

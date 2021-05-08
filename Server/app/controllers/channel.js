@@ -4,12 +4,30 @@ const {
   showChannel,
   updateChannel,
   deleteChannel,
+  showChannelByMembership,
 } = require("../models/channel");
+const {showUserFromEmail} = require("../models/user");
+const jwt = require('jsonwebtoken');
 
 exports.index = async (req, res) => {
+  
+  const token = req.headers.authorization.split(' ')[1];
+  const decoded = jwt.verify(token, 'marionLaBest');
+  const user = await showUserFromEmail(decoded.email);
+
   const channels = await listAllChannels();
 
-  return res.json(channels);
+  const channelsTokeep =[]
+  channels.find(c => {
+    if(c.membership && c.membership.includes(user.id))
+      channelsTokeep.push(c)});
+
+  try {
+    const chan = await showChannelByMembership(channelsTokeep);
+    return res.status(200).json(chan);
+  } catch (err) {
+    return res.sendStatus(404);
+  }
 };
 
 exports.create = async (req, res) => {
@@ -32,6 +50,21 @@ exports.show = async (req, res) => {
   try {
     const channel = await showChannel(channelId);
     return res.status(200).json(channel);
+  } catch (err) {
+    return res.sendStatus(404);
+  }
+};
+
+exports.showByMembership = async (req, res) => {
+
+  const channels = await listAllChannels();
+  const channelTokeep = channels.find(c => {
+    if(c.membership)
+      return c.membership.includes(req.params.userId)});
+
+  try {
+    const chan = await showChannelByMembership(channelTokeep);
+    return res.status(200).json(chan);
   } catch (err) {
     return res.sendStatus(404);
   }
