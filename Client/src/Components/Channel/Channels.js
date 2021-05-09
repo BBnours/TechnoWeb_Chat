@@ -6,9 +6,11 @@ import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
-import { Typography } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import ChannelForm from "./ChannelForm.js"
+import { MdPersonAdd } from "react-icons/md";
 import authHeader from "../../Services/auth-header";
+import ChannelInviteForm from "./ChannelInviteForm";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -82,6 +84,9 @@ function Channels({ onChannel }) {
               }
             >
               {channel.name}
+              <div  style={{marginLeft: 'auto', marginRight: 0}}>
+              <ChannelInviteForm Currentchannel= {channel}/>
+              </div>
             </MenuItem>
           ))}
         </MenuList>
