@@ -130,9 +130,9 @@ function Settings() {
     history.push("/app");
   }
 
-  const deku = './icon_deku.png';
-  const kirua = './icon_kirua.png';
-  const fille = './icon_fille.jpg';
+  const deku = './icone_deku.png';
+  const kirua = './icone_kirua.png';
+  const fille = './icone_tsunade.png';
 
   return (
     <Card className={classes.backgroundC}>
