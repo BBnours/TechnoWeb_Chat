@@ -4,6 +4,7 @@ const {
   showUser,
   updateUser,
   deleteUser,
+  showUserFromEmail,
 } = require("../models/user");
 
 exports.index = async (req, res) => {
@@ -40,6 +41,16 @@ exports.show = async (req, res) => {
   try {
     const userId = req.params.userId;
     const user = await showUser(userId);
+    return res.status(200).json(user);
+  } catch (err) {
+    return res.sendStatus(404);
+  }
+};
+
+exports.showFromEmail = async (req, res) => {
+  try {
+    const email = req.params.email;
+    const user = await showUserFromEmail(email);
     return res.status(200).json(user);
   } catch (err) {
     return res.sendStatus(404);

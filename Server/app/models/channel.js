@@ -53,10 +53,37 @@ const showChannel = (channelId) => {
   });
 };
 
+
+const showChannelByMembership = (channelsTokeep) => {
+
+  const channels = [];
+  return new Promise((resolve, reject) => {
+
+    const options = {
+      gt: "channels:",
+      lte: "channels" + String.fromCharCode(":".charCodeAt(0) + 1),
+    };
+    console.log
+
+    db.createReadStream(options)
+      .on("data", ({ key, value }) => {
+        if (channelsTokeep.some(word => value.includes(word.id))) 
+        channels.push(JSON.parse(value));
+      })
+      .on("error", (err) => {
+        reject(err);
+      })
+      .on("end", () => {
+        resolve(channels);
+      });
+  });
+};
+
 const updateChannel = async (channelId, body) => {
   const channel = {
     id: channelId,
     name: body.name,
+    membership : body.membership,
   };
 
   return new Promise((resolve, reject) => {
@@ -88,4 +115,5 @@ module.exports = {
   showChannel,
   updateChannel,
   deleteChannel,
-};
+  showChannelByMembership,
+}

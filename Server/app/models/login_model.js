@@ -9,8 +9,8 @@ const getLogin = async (body) => {
     });
     return new Promise((resolve, reject) => {
         if (user) {
-            const access_token = jwt.sign({email: body.email}, token);
-            return resolve(access_token);
+            const accessToken = jwt.sign({email: body.email}, token);
+            return resolve({user : user , accessToken : accessToken});
         }
         else {
             reject();

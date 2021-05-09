@@ -5,27 +5,22 @@ import { MdSend } from "react-icons/md";
 import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
 import axios from 'axios';
-import { makeStyles } from "@material-ui/core/styles";
 import authHeader from "../../Services/auth-header";
+import AuthService from "../../Services/auth.service";
 
 
-const useStyles = makeStyles((theme) => ({
-  Send: {
-    backgroundColor: theme.palette.secondary.main
-  },
-}));
 
 function MessageForm({ addMessage, channel }) {
-  const classes = useStyles();
   const [content, setContent] = useState("");
   
+  const currentUser = AuthService.getCurrentUser();
 
   const onSubmit = async (e) => {
     const {data: message} = await axios.post(
       `http://localhost:8000/api/v1/channels/${channel.id}/messages`
     , {
       content: content,
-      userId: 'Oli',
+      userId: currentUser.user.id,
     }, { headers: authHeader() })
     addMessage(message)
     setContent('')

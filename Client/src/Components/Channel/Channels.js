@@ -58,7 +58,7 @@ function Channels({ onChannel }) {
   }
 
   const fetchChannels = async () => {
-    setChannels([])
+    setChannels([]);
     const {data: channels} = await axios.get(`http://localhost:8000/api/v1/channels/`, { headers: authHeader() })
     setChannels(channels)
   }

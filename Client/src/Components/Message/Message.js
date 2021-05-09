@@ -12,6 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { MdCreate, MdDelete } from "react-icons/md";
 import IconButton from "@material-ui/core/IconButton";
 import authHeader from "../../Services/auth-header";
+import AuthService from "../../Services/auth.service";
 
 const nl2br = require("react-nl2br");
 
@@ -37,6 +38,9 @@ function Message({ message, i, fetchMessages }) {
   const onClickModif = () => setShowModif(true);
   const wrapperRef = useRef();
   const [content, setContent] = useState("");
+  const [user, setUser] = useState("");
+  const [isOwner, setOwner] = useState(true);
+  
 
   const onChange = useCallback(
     (e) => {
@@ -52,6 +56,8 @@ function Message({ message, i, fetchMessages }) {
   };
 
   useEffect(() => {
+    axios.get(`http://localhost:8000/api/v1/users/${message.userId}`, { headers: authHeader() })
+    .then(response => setUser(response.data));;
     document.addEventListener("click", handleClickOutside, true);
     return () => {
       document.removeEventListener("click", handleClickOutside, true);
@@ -72,13 +78,20 @@ function Message({ message, i, fetchMessages }) {
     setContent('');
   };
 
+  const currentUser = AuthService.getCurrentUser();
+  function lookOwner(e) {
+    if(currentUser.user.id=== message.userId)
+      setOwner(true);
+    else setOwner(false);
+  }
+
   return (
-    <div id="messageDiv" key={i}>
+    <div id="messageDiv" key={i} onMouseOver={lookOwner}>
       <Avatar style={{ marginBottom: 0 }}>O</Avatar>
       <div
         style={{ display: "flex", flexDirection: "column", padding: "10px" }}
       >
-        <span style={{ color: "whitesmoke" }}>{message.userId}</span>
+        <span style={{ color: "whitesmoke" }}>{user.name}</span>
         <li>
           <Card className={classes.bubble}>
             <span style={{ color: "black" }}>
@@ -87,6 +100,8 @@ function Message({ message, i, fetchMessages }) {
           </Card>
         </li>
       </div>
+      {isOwner ?(
+        <div>
       <IconButton
         className="mdHover"
         variant="contained"
@@ -135,6 +150,8 @@ function Message({ message, i, fetchMessages }) {
       >
         <MdDelete className="mdHover" />
       </IconButton>
+      </div>
+      ) : null}
     </div>
   );
 }

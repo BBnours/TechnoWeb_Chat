@@ -1,5 +1,4 @@
 const { v4: uuid } = require("uuid");
-const crypto = require("crypto");
 const db = require("../../db_config");
 
 const listAllUsers = async () => {
@@ -43,9 +42,27 @@ const createNewUser = (body) => {
   });
 };
 
-const showUser = (userId) => {
+const showUser = async (userId) => {
   return new Promise((resolve, reject) => {
     db.get(`users:${userId}`, (err, value) => {
+      if (err) {
+        return reject(err);
+      } else {
+        resolve(JSON.parse(value));
+      }
+    });
+  });
+};
+
+const showUserFromEmail = async(email) => {
+
+  const users = await listAllUsers();
+    const user = users.find(u => {
+        return u.email === email});
+
+
+  return new Promise((resolve, reject) => {
+    db.get(`users:${user.id}`, (err, value) => {
       if (err) {
         return reject(err);
       } else {
@@ -92,4 +109,5 @@ module.exports = {
   showUser,
   updateUser,
   deleteUser,
+  showUserFromEmail,
 };
