@@ -79,7 +79,7 @@ const updateUser = async (userId, body) => {
     id: userId,
     name: body.name,
     email: body.email,
-    password: bcrypt.hashSync(body.password, 10),
+    password: body.password,
     src: body.src,
   };
 
