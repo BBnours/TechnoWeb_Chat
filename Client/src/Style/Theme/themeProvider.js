@@ -1,9 +1,6 @@
 import React from 'react';
-import { render } from 'react-dom';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { createMuiTheme } from '@material-ui/core/styles';
 import yellow from '@material-ui/core/colors/yellow';
-import blue from '@material-ui/core/colors/blue';
 import pink from '@material-ui/core/colors/pink';
 
 
@@ -16,16 +13,16 @@ function ThemeBuilder() {
       () =>
         createMuiTheme({
           palette: {
-            type: prefersDarkMode == 'dark' ? 'dark' : 'light',
+            type: prefersDarkMode === 'dark' ? 'dark' : 'light',
 
             primary: {
-              main: prefersDarkMode == 'dark' ? yellow[500] :pink[500],
+              main: prefersDarkMode === 'dark' ? yellow[500] :pink[500],
             },
             secondary: {
-              main: prefersDarkMode == 'dark' ? '#5d6d7c' : '#ffad39',
+              main: prefersDarkMode === 'dark' ? '#5d6d7c' : '#ffad39',
             },
             third : {
-              main: prefersDarkMode == 'dark' ? "#f2efe2" : '#39ff74',
+              main: prefersDarkMode === 'dark' ? "#f2efe2" : '#39ff74',
             },
             typography: {
               color: '#ffad39',

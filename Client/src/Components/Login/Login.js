@@ -3,7 +3,6 @@ import {} from 'react';
 import "../../Style/App.css";
 import {Link} from "react-router-dom";
 import AuthService from "../../Services/auth.service";
-import axios from "axios";
 import { useHistory } from "react-router-dom";
 import {
   Grid,
@@ -13,7 +12,6 @@ import {
 
 export default () => {
 
-  let check;
   const history = useHistory();
 
   const [allValues, setAllValues] = useState({
@@ -27,8 +25,8 @@ export default () => {
 
   const onSubmit = async () => {
     const check =await AuthService.login(allValues.email, allValues.password);
-    if (check === true){
-      history.push("/welcome");
+    if (check === false){
+      history.push("/");
     }
   }
 
@@ -61,7 +59,7 @@ export default () => {
           </Grid>
           <Grid item xs={12}>
             <Button color="primary" onClick={onSubmit} type="submit" variant="contained">
-              <Link >se connecter</Link>
+            <Link to="/welcome">Se Connecter</Link>
             </Button>
           </Grid>
           <Grid item xs={12}>

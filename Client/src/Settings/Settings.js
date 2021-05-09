@@ -1,12 +1,7 @@
 import React, {useEffect, useState} from "react";
 import "../Style/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { MdSettings } from "react-icons/md";
 import { withStyles } from "@material-ui/core/styles";
-import { purple } from "@material-ui/core/colors";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Switch from "@material-ui/core/Switch";
 import {
   Grid,
@@ -76,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
 function Settings() {
   const classes = useStyles();
   const history = useHistory();
-  const [state, setState] = React.useState(true);
+  const [state, setState] = useState(true);
   const [allValues, setAllValues] = useState({
     nom: '',
     src: ''
@@ -109,8 +104,8 @@ function Settings() {
   const currentUser = AuthService.getCurrentUser()
 
   const updateUser = async () => {
-    if (allValues.nom != ''  && allValues.src != '') {
-      const {data: user} = await axios.put(
+    if (allValues.nom !== ''  && allValues.src !== '') {
+      await axios.put(
           `http://localhost:8000/api/v1/users/${currentUser.user.id}`
           , {
             name: allValues.nom,

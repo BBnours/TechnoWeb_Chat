@@ -1,11 +1,10 @@
-import React, {Component, useCallback, useState} from "react";
+import React, {useState} from "react";
 import {} from 'react';
 import "../../Style/App.css";
 import {Link, useHistory} from "react-router-dom";
 import axios from "axios";
-import authHeader from "../../Services/auth-header";
 import AuthService from "../../Services/auth.service";
-import {Button, FormControl, FormHelperText, Grid, InputLabel, NativeSelect, TextField} from "@material-ui/core";
+import {Button, Grid, InputLabel, NativeSelect, TextField} from "@material-ui/core";
 
 export default () => {
 
@@ -37,16 +36,16 @@ export default () => {
             `http://localhost:8000/api/v1/users/`
         )
         for (let i = 0; i < users.length; i++) {
-            if (allValues.email == users[i].email ) {
+            if (allValues.email === users[i].email ) {
                 return check = true;
             }
         }
     }
 
     const onSubmit = async () => {
-        if (allValues.email != '' || allValues.nom != '' || allValues.password != '') {
+        if (allValues.email !== '' || allValues.nom !== '' || allValues.password !== '') {
             await emailUse();
-            if(check!=true) {
+            if(check!==true) {
                 const {data: user} = await axios.post(
                     `http://localhost:8000/api/v1/users/`
                     , {

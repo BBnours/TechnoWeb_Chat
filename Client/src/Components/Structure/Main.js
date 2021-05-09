@@ -1,9 +1,9 @@
 import React from "react";
-import {useRef, useState} from 'react';
+import {useState} from 'react';
 import Channels from "../Channel/Channels.js";
 import Channel from "../Channel/Channel.js";
 import Intro from "./Intro";
-import { Paper, Toolbar } from '@material-ui/core';
+import { Paper} from '@material-ui/core';
 
 const styles = {
   main: {

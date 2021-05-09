@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -54,13 +54,11 @@ function ChannelForm({addChannel}) {
          }})
         }
 
-  const onChange = useCallback(
-    (e) => {
+    const onChange = async (e) => {
       setAllValues( prevValues => {
         return { ...prevValues,[e.target.name]: e.target.value}
       })
-    }
-  );
+    };
 
   const handleClickOpen = () => {
     setOpen(true);

@@ -2,7 +2,6 @@ import React from "react";
 import "../../Style/App.css";
 import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { MdSettings } from "react-icons/md";
 import { Button } from "@material-ui/core";
 import AuthService from "../../Services/auth.service";
 import {MdExitToApp} from "react-icons/all";

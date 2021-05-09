@@ -3,24 +3,8 @@ import "../../Style/App.css";
 import MessageForm from "../Message/MessageSend.js";
 import Paper from '@material-ui/core/Paper';
 import Messages from "../Message/Messages.js";
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import axios from 'axios';
-import { Typography, AppBar, Container, Toolbar } from '@material-ui/core';
-import Fab from '@material-ui/core/Fab';
 import authHeader from "../../Services/auth-header";
-
-
-
-const useStyles = (theme) => ({
-  root: {
-    height: '100%',
-    flex: '1 1 auto',
-    display: 'flex',
-    flexDirection: 'column',
-    position: 'relative',
-    overflowX: 'auto',
-  },
-})
 
 
 function Channel({ channel }) {

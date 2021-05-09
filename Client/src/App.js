@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import "./Style/App.css";
 import Footer from "./Components/Structure/Footer.js";
 import Header from "./Components/Structure/Header.js";
@@ -12,7 +12,6 @@ import Welcome from "./Components/Structure/Welcome";
 import Login from "./Components/Login/Login";
 import Compte from "./Components/Login/Compte";
 import Settings from "./Settings/Settings";
-import AuthService from "./Services/auth.service";
 
 
 function handleScroll(e) {
@@ -23,7 +22,6 @@ function handleScroll(e) {
     e.target.classList.add("on-scrollbar");
   }
 }
-
 
 const styles = {
   root: {

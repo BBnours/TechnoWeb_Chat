@@ -1,14 +1,13 @@
 import React from "react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "../../Style/App.css";
 import Paper from "@material-ui/core/Paper";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
-import { Button, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import ChannelForm from "./ChannelForm.js"
-import { MdPersonAdd } from "react-icons/md";
 import authHeader from "../../Services/auth-header";
 import ChannelInviteForm from "./ChannelInviteForm";
 

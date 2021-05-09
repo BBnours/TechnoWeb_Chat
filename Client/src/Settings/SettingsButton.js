@@ -1,10 +1,9 @@
 import React from "react";
 import "../Style/App.css";
-import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { MdSettings } from "react-icons/md";
-import { AppBar, Toolbar, IconButton, Typography, Link, Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 function SettingsButton() {
 

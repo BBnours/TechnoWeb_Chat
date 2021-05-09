@@ -1,7 +1,6 @@
 import React from "react";
 import Message from "./Message"
 import Card from '@material-ui/core/Card';
-import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 const { DateTime } = require("luxon");
@@ -17,11 +16,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Messages({ messages , channel, fetchMessages}) {
   const classes = useStyles();
-  const [date, datePass] = useState([]);
-
-  const addDate = (Newdate) => {
-    datePass([...date, Newdate]);
-  };
 
   const uniqueTags = [];
   messages.map((msg) => {
@@ -49,7 +43,7 @@ function Messages({ messages , channel, fetchMessages}) {
             <Card className={classes.dateCard} > -- {msg} -- </Card>
             <ul>
             {messages.map((message, i) => {
-              if(msg== DateTime.fromISO(message.created_at).toFormat("dd MM yyyy"))
+              if(msg === DateTime.fromISO(message.created_at).toFormat("dd MM yyyy"))
                   return (
                       
                         <Message key={i} message={message} i={i} channel={channel} fetchMessages={fetchMessages} />
