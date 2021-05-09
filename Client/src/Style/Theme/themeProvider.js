@@ -10,36 +10,27 @@ import pink from '@material-ui/core/colors/pink';
 
 function ThemeBuilder() {
 
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const prefersDarkMode = window.localStorage.getItem('theme');
   
   const theme = React.useMemo(
       () =>
         createMuiTheme({
           palette: {
-            type: prefersDarkMode ? 'dark' : 'light',
+            type: prefersDarkMode == 'dark' ? 'dark' : 'light',
 
             primary: {
-              main: yellow[500],
+              main: prefersDarkMode == 'dark' ? yellow[500] :pink[500],
             },
             secondary: {
-              main: blue[700],
-              contrastText: '#000',
+              main: prefersDarkMode == 'dark' ? '#5d6d7c' : '#ffad39',
             },
             third : {
-              main: "#f2efe2"
-            }
-          },
-          '@global': {
-            '*::-webkit-scrollbar': {
-              width: '0.4em'
+              main: prefersDarkMode == 'dark' ? "#f2efe2" : '#39ff74',
             },
-            '*::-webkit-scrollbar-track': {
-              '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
+            typography: {
+              color: '#ffad39',
+              fontFamily: 'Roboto',
             },
-            '*::-webkit-scrollbar-thumb': {
-              backgroundColor: '#2ecc71',
-              outline: '1px solid slategrey'
-            }
           },
         }),
       [prefersDarkMode],
