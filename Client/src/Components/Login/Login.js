@@ -26,19 +26,10 @@ export default () => {
   };
 
   const onSubmit = async () => {
-    const {data: users} = await axios.get(
-        `http://localhost:8000/api/v1/users/`
-    )
-    for (let i = 0; i < users.length; i++) {
-      if (allValues.email == users[i].email && allValues.password == users[i].password) {
-        check = true;
-      }
+    const check =await AuthService.login(allValues.email, allValues.password);
+    if (check === true){
+      history.push("/welcome");
     }
-    if (check != true){
-      history.push("/");
-    }
-    else
-      await AuthService.login(allValues.email, allValues.password);
   }
 
     return (
@@ -70,7 +61,7 @@ export default () => {
           </Grid>
           <Grid item xs={12}>
             <Button color="primary" onClick={onSubmit} type="submit" variant="contained">
-              <Link to="/welcome">se connecter</Link>
+              <Link >se connecter</Link>
             </Button>
           </Grid>
           <Grid item xs={12}>
