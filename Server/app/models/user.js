@@ -29,6 +29,7 @@ const createNewUser = (body) => {
     name: body.name,
     email: body.email,
     password: body.password,
+    src: body.src,
   };
 
   return new Promise((resolve, reject) => {
@@ -78,6 +79,7 @@ const updateUser = async (userId, body) => {
     name: body.name,
     email: body.email,
     password: body.password,
+    src: body.src,
   };
 
   return new Promise((resolve, reject) => {

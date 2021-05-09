@@ -5,16 +5,18 @@ import {Link, useHistory} from "react-router-dom";
 import axios from "axios";
 import authHeader from "../../Services/auth-header";
 import AuthService from "../../Services/auth.service";
-import {Button, Grid, TextField} from "@material-ui/core";
+import {Button, FormControl, FormHelperText, Grid, InputLabel, NativeSelect, TextField} from "@material-ui/core";
 
 export default () => {
 
     const history = useHistory();
+    let check;
     const [all_users, setUsers] = useState([]);
     const [allValues, setAllValues] = useState({
         nom: '',
         email: '',
-        password: ''
+        password: '',
+        src:''
     });
     const changeHandler = e => {
         setAllValues({...allValues, [e.target.name]: e.target.value})
@@ -30,28 +32,49 @@ export default () => {
         fetchUsers()
     }
 
+    const emailUse = async ()=>{
+        const {data: users} = await axios.get(
+            `http://localhost:8000/api/v1/users/`
+        )
+        for (let i = 0; i < users.length; i++) {
+            if (allValues.email == users[i].email ) {
+                return check = true;
+            }
+        }
+    }
+
     const onSubmit = async () => {
         if (allValues.email != '' || allValues.nom != '' || allValues.password != '') {
-            const {data: user} = await axios.post(
-                `http://localhost:8000/api/v1/users/`
-                , {
-                    name: allValues.nom,
-                    email: allValues.email,
-                    password: allValues.password,
+            await emailUse();
+            if(check!=true) {
+                const {data: user} = await axios.post(
+                    `http://localhost:8000/api/v1/users/`
+                    , {
+                        name: allValues.nom,
+                        email: allValues.email,
+                        password: allValues.password,
+                        src: allValues.src,
+                    })
+                fetchUsers()
+                addUser(user)
+                setAllValues({
+                    nom: '',
+                    email: '',
+                    password: '',
+                    src: ''
                 })
-            fetchUsers()
-            addUser(user)
-            setAllValues({
-                nom: '',
-                email: '',
-                password: ''
-            })
-            await AuthService.login(allValues.email, allValues.password);
+                await AuthService.login(allValues.email, allValues.password);
+            }else {
+                history.push("/nv_compte");
+            }
         }
         else {
             history.push("/nv_compte");
         }
     }
+    const deku = './icon_deku.png';
+    const kirua = './icon_kirua.png';
+    const fille = './icon_fille.jpg';
 
   return (
       <form className="login">
@@ -87,11 +110,36 @@ export default () => {
                               onChange={changeHandler}
                           />
                       </Grid>
+                      <Grid item xs={12}>
+                          <InputLabel>Choix Image</InputLabel>
+                          <NativeSelect
+                              name="src"
+                              id="src"
+                              onChange={changeHandler}>
+                              <option
+                                      aria-label="None"
+                                      value="" />
+                              <option
+                                      value={deku}
+                              >Deku</option>
+                              <option
+                                      value={kirua}>Kirua
+                              </option>
+                              <option
+                                      value={fille}
+                              >Fille</option>
+                          </NativeSelect>
+                      </Grid>
                   </Grid>
               </Grid>
               <Grid item xs={12}>
                   <Button color="primary" onClick={onSubmit} type="submit" variant="contained">
                       <Link to={"/welcome"}>continuer</Link>
+                  </Button>
+              </Grid>
+              <Grid item xs={12}>
+                  <Button color="primary" type="submit" variant="contained">
+                      <Link to={"/"}>retour</Link>
                   </Button>
               </Grid>
           </Grid>

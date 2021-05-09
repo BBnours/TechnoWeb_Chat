@@ -79,8 +79,7 @@ function Settings() {
   const [state, setState] = React.useState(true);
   const [allValues, setAllValues] = useState({
     nom: '',
-    email: '',
-    password: ''
+    src: ''
   });
 
   useEffect(() => {
@@ -110,18 +109,18 @@ function Settings() {
   const currentUser = AuthService.getCurrentUser()
 
   const updateUser = async () => {
-    if (allValues.email != '' || allValues.nom != '' || allValues.password != '') {
+    if (allValues.nom != ''  && allValues.src != '') {
       const {data: user} = await axios.put(
           `http://localhost:8000/api/v1/users/${currentUser.user.id}`
           , {
             name: allValues.nom,
-            email: allValues.email,
-            password: allValues.password,
+            email: currentUser.user.email,
+            password: currentUser.user.password,
+            src: allValues.src,
           }, { headers: authHeader() })
       setAllValues({
         nom: '',
-        email: '',
-        password: ''
+        src: ''
       })
       refreshPage();
     }
@@ -130,6 +129,10 @@ function Settings() {
   const backTchat = async () => {
     history.push("/app");
   }
+
+  const deku = './icon_deku.png';
+  const kirua = './icon_kirua.png';
+  const fille = './icon_fille.jpg';
 
   return (
     <Card className={classes.backgroundC}>
@@ -147,23 +150,25 @@ function Settings() {
                 onChange={changeHandler}
             ></TextField>
           </div>
-
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <TextField
-                placeholder="Email"
-                name="email"
-                id="email"
-                type="text"
-                onChange={changeHandler}
-            ></TextField>
-          </div>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <TextField
-                placeholder="Password"
-                name="password"
-                id="password"
-                type="password"
-                onChange={changeHandler} ></TextField>
+            <InputLabel>Choix image</InputLabel>
+            <NativeSelect
+                name="src"
+                id="src"
+                onChange={changeHandler}>
+              <option
+                  aria-label="None"
+                  value="" />
+              <option
+                  value={deku}
+              >Deku</option>
+              <option
+                  value={kirua}>Kirua
+              </option>
+              <option
+                  value={fille}
+              >Fille</option>
+            </NativeSelect>
           </div>
           <Button style={{margin: '0 auto', display: "flex"}}
               variant="contained"
@@ -186,7 +191,7 @@ function Settings() {
         </Card>
         <div style={{ display: "flex", flexDirection: "column" }}>
           Language preference :
-          <FormControl className={classes.formControl}>
+          <FormControl >
             <InputLabel htmlFor="age-native-helper">Language</InputLabel>
             <NativeSelect>
               <option aria-label="None" value="" />
