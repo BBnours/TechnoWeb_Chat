@@ -126,7 +126,7 @@ export default () => {
                               </option>
                               <option
                                       value={fille}
-                              >Fille</option>
+                              >Tsunade</option>
                           </NativeSelect>
                       </Grid>
                   </Grid>

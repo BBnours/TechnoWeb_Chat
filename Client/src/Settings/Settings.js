@@ -110,7 +110,6 @@ function Settings() {
           , {
             name: allValues.nom,
             email: currentUser.user.email,
-            password: currentUser.user.password,
             src: allValues.src,
           }, { headers: authHeader() })
       setAllValues({
@@ -162,7 +161,7 @@ function Settings() {
               </option>
               <option
                   value={fille}
-              >Fille</option>
+              >Tsunade</option>
             </NativeSelect>
           </div>
           <Button style={{margin: '0 auto', display: "flex"}}
