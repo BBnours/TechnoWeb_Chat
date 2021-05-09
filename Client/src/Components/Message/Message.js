@@ -11,8 +11,8 @@ import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import { MdCreate, MdDelete } from "react-icons/md";
 import IconButton from "@material-ui/core/IconButton";
-import authHeader from "../../Services/auth-header";
-import AuthService from "../../Services/auth.service";
+import authHeader from "../../Services/AuthHeader";
+import AuthService from "../../Services/Auth";
 const nl2br = require("react-nl2br");
 
 const useStyles = makeStyles((theme) => ({

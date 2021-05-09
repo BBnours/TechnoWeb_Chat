@@ -3,7 +3,7 @@ import "../../Style/App.css";
 import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "@material-ui/core";
-import AuthService from "../../Services/auth.service";
+import AuthService from "../../Services/Auth";
 import {MdExitToApp} from "react-icons/all";
 
 function Deconnexion() {

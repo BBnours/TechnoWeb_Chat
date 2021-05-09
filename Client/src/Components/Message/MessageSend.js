@@ -5,8 +5,8 @@ import { MdSend } from "react-icons/md";
 import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
 import axios from 'axios';
-import authHeader from "../../Services/auth-header";
-import AuthService from "../../Services/auth.service";
+import authHeader from "../../Services/AuthHeader";
+import AuthService from "../../Services/Auth";
 
 
 

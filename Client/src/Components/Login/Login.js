@@ -2,8 +2,7 @@ import React, {useState} from "react";
 import {} from 'react';
 import "../../Style/App.css";
 import {Link} from "react-router-dom";
-import AuthService from "../../Services/auth.service";
-import axios from "axios";
+import AuthService from "../../Services/Auth";
 import { useHistory } from "react-router-dom";
 import {
   Grid,
@@ -13,7 +12,6 @@ import {
 
 export default () => {
 
-  let check;
   const history = useHistory();
 
   const [allValues, setAllValues] = useState({

@@ -4,7 +4,7 @@ import MessageForm from "../Message/MessageSend.js";
 import Paper from '@material-ui/core/Paper';
 import Messages from "../Message/Messages.js";
 import axios from 'axios';
-import authHeader from "../../Services/auth-header";
+import authHeader from "../../Services/AuthHeader";
 
 
 function Channel({ channel }) {

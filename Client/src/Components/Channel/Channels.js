@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import { Typography } from "@material-ui/core";
 import ChannelForm from "./ChannelForm.js"
-import authHeader from "../../Services/auth-header";
+import authHeader from "../../Services/AuthHeader";
 import ChannelInviteForm from "./ChannelInviteForm";
 
 const useStyles = makeStyles((theme) => ({

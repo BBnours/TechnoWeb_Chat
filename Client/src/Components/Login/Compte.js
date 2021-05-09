@@ -3,7 +3,7 @@ import {} from 'react';
 import "../../Style/App.css";
 import {Link, useHistory} from "react-router-dom";
 import axios from "axios";
-import AuthService from "../../Services/auth.service";
+import AuthService from "../../Services/Auth";
 import {Button, Grid, InputLabel, NativeSelect, TextField} from "@material-ui/core";
 
 export default () => {

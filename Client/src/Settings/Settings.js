@@ -16,8 +16,8 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
-import AuthService from "../Services/auth.service";
-import authHeader from "../Services/auth-header";
+import AuthService from "../Services/Auth";
+import authHeader from "../Services/AuthHeader";
 import {useHistory} from "react-router-dom";
 
 const AntSwitch = withStyles((theme) => ({
@@ -110,6 +110,7 @@ function Settings() {
           , {
             name: allValues.nom,
             email: currentUser.user.email,
+            password: currentUser.user.password,
             src: allValues.src,
           }, { headers: authHeader() })
       setAllValues({

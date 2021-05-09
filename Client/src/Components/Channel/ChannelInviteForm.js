@@ -9,8 +9,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import axios from 'axios';
-import authHeader from "../../Services/auth-header";
-import AuthService from "../../Services/auth.service";
+import authHeader from "../../Services/AuthHeader";
+import AuthService from "../../Services/Auth";
 import { MdPersonAdd } from "react-icons/md";
 
 function ChannelInviteForm({Currentchannel}) {
