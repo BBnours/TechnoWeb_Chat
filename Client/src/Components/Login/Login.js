@@ -61,7 +61,7 @@ export default () => {
           </Grid>
           <Grid item xs={12}>
             <Button color="primary" onClick={onSubmit} type="submit" variant="contained">
-              <Link >se connecter</Link>
+             se connecter
             </Button>
           </Grid>
           <Grid item xs={12}>
