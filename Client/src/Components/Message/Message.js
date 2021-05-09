@@ -77,7 +77,7 @@ function Message({ message, i, fetchMessages }) {
     fetchMessages();
     setContent('');
   };
-
+  
   const currentUser = AuthService.getCurrentUser();
   function lookOwner(e) {
     if(currentUser.user.id=== message.userId)

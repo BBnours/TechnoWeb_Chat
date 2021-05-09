@@ -1,5 +1,6 @@
 const { v4: uuid } = require("uuid");
 const db = require("../../db_config");
+const bcrypt = require('bcrypt');
 
 const listAllUsers = async () => {
   return new Promise((resolve, reject) => {
@@ -28,7 +29,7 @@ const createNewUser = (body) => {
     id: uuid(),
     name: body.name,
     email: body.email,
-    password: body.password,
+    password: bcrypt.hashSync(body.password, 10),
   };
 
   return new Promise((resolve, reject) => {
@@ -77,7 +78,7 @@ const updateUser = async (userId, body) => {
     id: userId,
     name: body.name,
     email: body.email,
-    password: body.password,
+    password: bcrypt.hashSync(body.password, 10),
   };
 
   return new Promise((resolve, reject) => {

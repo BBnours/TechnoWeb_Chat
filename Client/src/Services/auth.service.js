@@ -3,6 +3,7 @@ import {} from 'react';
 
 const login = (email, password) => {
     localStorage.clear();
+    
     return axios
         .post('http://localhost:8000/api/v1/login', {
             email,
@@ -12,8 +13,8 @@ const login = (email, password) => {
             if (response.data.accessToken) {
                 localStorage.setItem("user", JSON.stringify(response.data));
             }
-
-            return response.data.message;
+            if(response)
+                return true
         });
 };
 
