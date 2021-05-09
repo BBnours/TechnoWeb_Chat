@@ -126,19 +126,19 @@ export default () => {
                               </option>
                               <option
                                       value={fille}
-                              >Fille</option>
+                              >Tsunade</option>
                           </NativeSelect>
                       </Grid>
                   </Grid>
               </Grid>
               <Grid item xs={12}>
                   <Button color="primary" onClick={onSubmit} type="submit" variant="contained">
-                      <Link to={"/welcome"}>continuer</Link>
+                      <Link to={"/welcome"} style={{ textDecoration: 'none', color:'black' }}>continuer</Link>
                   </Button>
               </Grid>
               <Grid item xs={12}>
                   <Button color="primary" type="submit" variant="contained">
-                      <Link to={"/"}>retour</Link>
+                      <Link to={"/"} style={{ textDecoration: 'none', color:'black' }}>retour</Link>
                   </Button>
               </Grid>
           </Grid>
