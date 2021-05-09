@@ -4,6 +4,7 @@ import "../../Style/App.css";
 import {Link, useHistory} from "react-router-dom";
 import axios from "axios";
 import authHeader from "../../Services/auth-header";
+import AuthService from "../../Services/auth.service";
 
 export default () => {
 
@@ -36,7 +37,7 @@ export default () => {
                     name: allValues.nom,
                     email: allValues.email,
                     password: allValues.password,
-                }, { headers: authHeader() })
+                })
             fetchUsers()
             addUser(user)
             setAllValues({
@@ -44,6 +45,7 @@ export default () => {
                 email: '',
                 password: ''
             })
+            await AuthService.login(allValues.email, allValues.password);
         }
         else {
             history.push("/nv_compte");

@@ -2,11 +2,15 @@ import React, {useState} from "react";
 import {} from 'react';
 import "../../Style/App.css";
 import {Link} from "react-router-dom";
+import AuthService from "../../Services/auth.service";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import AuthService from "../../Services/auth.service";
 
 export default () => {
+
+  let check;
+  const history = useHistory();
+
   const [allValues, setAllValues] = useState({
     email: '',
     password: ''
@@ -17,6 +21,18 @@ export default () => {
   };
 
   const onSubmit = async () => {
+    const {data: users} = await axios.get(
+        `http://localhost:8000/api/v1/users/`
+    )
+    for (let i = 0; i < users.length; i++) {
+      if (allValues.email == users[i].email && allValues.password == users[i].password) {
+        check = true;
+      }
+    }
+    if (check != true){
+      history.push("/");
+    }
+    else
       await AuthService.login(allValues.email, allValues.password);
   }
 

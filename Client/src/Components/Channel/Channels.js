@@ -65,11 +65,10 @@ function Channels({ onChannel }) {
     setChannels(channels)
   }
 
-
   return (
     <div className={classes.root}>
       <Paper className={classes.paper} elevation={3}>
-        <Typography variant="h6">Channels</Typography>
+        <Typography variant="h6">Channels </Typography>
         <MenuList>
           {all_channels.map((channel, i) => (
             <MenuItem
