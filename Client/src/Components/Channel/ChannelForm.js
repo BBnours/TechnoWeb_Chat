@@ -6,26 +6,36 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import axios from 'axios';
 import authHeader from "../../Services/auth-header";
+import AuthService from "../../Services/auth.service";
 
 function ChannelForm({addChannel}) {
   const [open, setOpen] = React.useState(false);
+  const currentUser = AuthService.getCurrentUser();
   const [allValues, setAllValues] = useState({
     channelName: '',
+    members : '' ,
  });
- const [members, setMembers] = useState([]);
 
   const onSubmit = async () => {
 
       const {data: users} = await axios.get(
-        `http://localhost:8000/api/v1/users/`)
+        `http://localhost:8000/api/v1/users/`, { headers: authHeader() })
 
-        const memberRequests = users.email.reduce((result, user) => {
-          return members.includes(user.email) ? [...result, user.id] : result;
-        }, [])
+        const mails = allValues.members.split(/(?:;,| )+/);
 
+        var memberRequests = []
+
+        users.map((user, i) => { 
+        if(mails.includes(user.email)) 
+          memberRequests.push(user.id);
+        })
+        
+        memberRequests.push(currentUser.user.id);
+        
     const {data: channel} = await axios.post(
       `http://localhost:8000/api/v1/channels/`
     , {
@@ -35,22 +45,19 @@ function ChannelForm({addChannel}) {
 
         handleClose()
         addChannel(channel)
+      
 
         setAllValues( prevValues => {
           return {
             channelName: '',
+            members : '',
          }})
-          setMembers([])
         }
 
   const onChange = useCallback(
     (e) => {
       setAllValues( prevValues => {
         return { ...prevValues,[e.target.name]: e.target.value}
-      })
-    setMembers(prevValues => { 
-      if(e.target.name==="membership")
-        return [...prevValues, e.target.value]
       })
     }
   );
@@ -70,7 +77,7 @@ function ChannelForm({addChannel}) {
       </Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">New Channel</DialogTitle>
-        <DialogContent>
+        <DialogContent style={{display:'flex', flexDirection:'column'}}>
           <DialogContentText>
             To create a New channel, please enter a name.
           </DialogContentText>
@@ -83,10 +90,11 @@ function ChannelForm({addChannel}) {
           />
           <TextField
             onChange={onChange}
-            name="idChann"
-            label="id chann"
-            value= {allValues.membership}
+            name="members"
+            label="Members"
+            value= {allValues.members}
           />
+          <FormHelperText>Add your friends' mail seperated with ';'</FormHelperText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">

@@ -9,8 +9,6 @@ import axios from "axios";
 import { Typography } from "@material-ui/core";
 import ChannelForm from "./ChannelForm.js"
 import authHeader from "../../Services/auth-header";
-import getCurrentUser from "../../Services/auth.service";
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,7 +59,6 @@ function Channels({ onChannel }) {
 
   const fetchChannels = async () => {
     setChannels([]);
-    const currentUser = getCurrentUser;
     const {data: channels} = await axios.get(`http://localhost:8000/api/v1/channels/`, { headers: authHeader() })
     setChannels(channels)
   }

@@ -12,6 +12,7 @@ exports.index = async (req, res) => {
 
   try {
     const Message = await listAllMessages(channelId);
+    
     return res.status(200).json(Message);
   } catch (err) {
     return res.sendStatus(404);

@@ -42,7 +42,7 @@ const createNewUser = (body) => {
   });
 };
 
-const showUser = (userId) => {
+const showUser = async (userId) => {
   return new Promise((resolve, reject) => {
     db.get(`users:${userId}`, (err, value) => {
       if (err) {

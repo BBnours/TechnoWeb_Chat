@@ -34,7 +34,7 @@ function Channel({ channel }) {
   }
   const fetchMessages = async () => {
     setMessages([])
-    const {data: messages} = await axios.get(`http://localhost:8000/api/v1/channels/${channel.id}/messages`, { headers: authHeader() })
+    const {data: messages} = await axios.get(`http://localhost:8000/api/v1/channels/${channel.id}/messages`,  { headers: authHeader() })
     setMessages(messages)
   }
   
