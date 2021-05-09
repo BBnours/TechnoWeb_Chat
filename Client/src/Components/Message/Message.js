@@ -13,7 +13,7 @@ import { MdCreate, MdDelete } from "react-icons/md";
 import IconButton from "@material-ui/core/IconButton";
 import authHeader from "../../Services/auth-header";
 import AuthService from "../../Services/auth.service";
-
+import Gravatar from 'react-gravatar'
 const nl2br = require("react-nl2br");
 
 const useStyles = makeStyles((theme) => ({
@@ -87,7 +87,7 @@ function Message({ message, i, fetchMessages }) {
 
   return (
     <div id="messageDiv" key={i} onMouseOver={lookOwner}>
-      <Avatar style={{ marginBottom: 0 }}>O</Avatar>
+      <Gravatar email={currentUser.user.email}/>
       <div
         style={{ display: "flex", flexDirection: "column", padding: "10px" }}
       >
