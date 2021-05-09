@@ -91,7 +91,7 @@ function Message({ message, i, fetchMessages }) {
       <div
         style={{ display: "flex", flexDirection: "column", padding: "10px" }}
       >
-        <span style={{ color: "whitesmoke" }}>{user.name}</span>
+        <span>{user.name}</span>
         <li>
           <Card className={classes.bubble}>
             <span style={{ color: "black" }}>

@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../Style/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { MdSettings } from "react-icons/md";
-import { withStyles } from '@material-ui/core/styles';
-import { purple } from '@material-ui/core/colors';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Switch from '@material-ui/core/Switch';
+import { withStyles } from "@material-ui/core/styles";
+import { purple } from "@material-ui/core/colors";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import Switch from "@material-ui/core/Switch";
 import {
   Grid,
   Card,
@@ -17,7 +17,7 @@ import {
   NativeSelect,
   FormControl,
   FormHelperText,
-  InputLabel
+  InputLabel,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -26,15 +26,15 @@ const AntSwitch = withStyles((theme) => ({
     width: 28,
     height: 16,
     padding: 0,
-    display: 'flex',
+    display: "flex",
   },
   switchBase: {
     padding: 2,
     color: theme.palette.grey[500],
-    '&$checked': {
-      transform: 'translateX(12px)',
+    "&$checked": {
+      transform: "translateX(12px)",
       color: theme.palette.common.white,
-      '& + $track': {
+      "& + $track": {
         opacity: 1,
         backgroundColor: theme.palette.primary.main,
         borderColor: theme.palette.primary.main,
@@ -44,13 +44,12 @@ const AntSwitch = withStyles((theme) => ({
   thumb: {
     width: 12,
     height: 12,
-    boxShadow: 'none',
+    boxShadow: "none",
   },
   track: {
     border: `1px solid ${theme.palette.grey[500]}`,
     borderRadius: 16 / 2,
     opacity: 1,
-    backgroundColor: theme.palette.common.white,
   },
   checked: {},
 }))(Switch);
@@ -67,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
   color: {
     backgroundColor: theme.palette.secondary.main,
   },
+  type: true,
 }));
 
 function Settings() {
@@ -74,14 +74,29 @@ function Settings() {
 
   const [state, setState] = React.useState(true);
 
-  const handleChecked = (event) => {
-    setState( event.target.checked);
+  useEffect(() => {
+    if (window.localStorage.getItem("theme") === "light") setState(true);
+    else setState(false);
+  }, []);
 
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
+  const handleChecked = (e) => {
+    if (e.target.checked) {
+      setState(true);
+      window.localStorage.setItem("theme", "light");
+    } else {
+      setState(false);
+      window.localStorage.setItem("theme", "dark");
+    }
+    refreshPage();
   };
 
   return (
     <Card className={classes.backgroundC}>
-      <Typography variant="h2" className={classes.Textcolor}>
+      <Typography variant="h2">
         Settings
       </Typography>
       <Card className="cardSetting">
@@ -92,37 +107,34 @@ function Settings() {
 
           <div style={{ display: "flex", flexDirection: "column" }}>
             Modify Email
-            <TextField label="New Email :" disabled="true"></TextField>
+            <TextField label="New Email :" ></TextField>
           </div>
         </Card>
 
         <Card variant="outlined" className="settingInfo">
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          UI theme :
-          <Grid component="label" container alignItems="center" spacing={1}>
-            <Grid item>Dark</Grid>
-            <Grid item>
-              <AntSwitch
-                checked={state}
-                onChange={handleChecked}
-              />
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            UI theme :
+            <Grid component="label" container alignItems="center" spacing={1}>
+              <Grid item>Dark</Grid>
+              <Grid item>
+                <AntSwitch checked={state} onChange={handleChecked} />
+              </Grid>
+              <Grid item>Light</Grid>
             </Grid>
-            <Grid item>Light</Grid>
-          </Grid>
-        </div>
+          </div>
         </Card>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          Language preference : 
+          Language preference :
           <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="age-native-helper">Language</InputLabel>
-        <NativeSelect>
-          <option aria-label="None" value="" />
-          <option value={10}>French</option>
-          <option value={20}>English</option>
-          <option value={30}>Portuguese</option>
-        </NativeSelect>
-        <FormHelperText>This function is currently disabled</FormHelperText>
-      </FormControl>
+            <InputLabel htmlFor="age-native-helper">Language</InputLabel>
+            <NativeSelect>
+              <option aria-label="None" value="" />
+              <option value={10}>French</option>
+              <option value={20}>English</option>
+              <option value={30}>Portuguese</option>
+            </NativeSelect>
+            <FormHelperText>This function is currently disabled</FormHelperText>
+          </FormControl>
         </div>
       </Card>
     </Card>
