@@ -161,15 +161,24 @@ li {
 }
 
 #SettingsIcon{
-  height: 60px; 
-  width: 60px; 
-
+  height: 30px;
+  width: 30px;
 }
 
+#DecoIcon{
+  height: 30px;
+  width: 30px;
+}
 .SettingsDiv{
   position: absolute;
+  bottom: 40px;
   right: 0;
+}
 
+.DecoDiv{
+  position: absolute;
+  top: 40px;
+  right: 0;
 }
 
 .cardSetting{

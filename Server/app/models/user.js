@@ -30,6 +30,7 @@ const createNewUser = (body) => {
     name: body.name,
     email: body.email,
     password: bcrypt.hashSync(body.password, 10),
+    src: body.src,
   };
 
   return new Promise((resolve, reject) => {
@@ -79,6 +80,7 @@ const updateUser = async (userId, body) => {
     name: body.name,
     email: body.email,
     password: bcrypt.hashSync(body.password, 10),
+    src: body.src,
   };
 
   return new Promise((resolve, reject) => {

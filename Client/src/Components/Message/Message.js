@@ -87,7 +87,7 @@ function Message({ message, i, fetchMessages }) {
 
   return (
     <div id="messageDiv" key={i} onMouseOver={lookOwner}>
-      <Gravatar email={user.email}/>
+      <Avatar src = {user.src} />
       <div
         style={{ display: "flex", flexDirection: "column", padding: "10px" }}
       >
