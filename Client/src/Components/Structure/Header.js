@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { AppBar,Toolbar,IconButton , Typography} from '@material-ui/core';
 import {Link} from "react-router-dom";
 import SettingsButton from "../../Settings/SettingsButton";
+import AuthService from "../../Services/auth.service";
 
 function Header() {
   return (
@@ -12,11 +13,15 @@ function Header() {
     <Typography variant='h3' >
       Ece Chat
     </Typography>
-    <Link className="button" to="/">Log Out</Link>
+    <Link onClick={deconnexion} className="button" to="/">Log Out</Link>
     <SettingsButton/>
   </Toolbar>
 </AppBar>
   );
+}
+
+function deconnexion() {
+  AuthService.logout();
 }
 
 export default Header;

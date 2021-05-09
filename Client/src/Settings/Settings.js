@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import "../Style/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { MdSettings } from "react-icons/md";
@@ -20,6 +20,10 @@ import {
   InputLabel,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import axios from "axios";
+import AuthService from "../Services/auth.service";
+import authHeader from "../Services/auth-header";
+import {useHistory} from "react-router-dom";
 
 const AntSwitch = withStyles((theme) => ({
   root: {
@@ -71,8 +75,13 @@ const useStyles = makeStyles((theme) => ({
 
 function Settings() {
   const classes = useStyles();
-
+  const history = useHistory();
   const [state, setState] = React.useState(true);
+  const [allValues, setAllValues] = useState({
+    nom: '',
+    email: '',
+    password: ''
+  });
 
   useEffect(() => {
     if (window.localStorage.getItem("theme") === "light") setState(true);
@@ -94,6 +103,34 @@ function Settings() {
     refreshPage();
   };
 
+  const changeHandler = e => {
+    setAllValues({...allValues, [e.target.name]: e.target.value})
+  }
+
+  const currentUser = AuthService.getCurrentUser()
+
+  const updateUser = async () => {
+    if (allValues.email != '' || allValues.nom != '' || allValues.password != '') {
+      const {data: user} = await axios.put(
+          `http://localhost:8000/api/v1/users/${currentUser.user.id}`
+          , {
+            name: allValues.nom,
+            email: allValues.email,
+            password: allValues.password,
+          }, { headers: authHeader() })
+      setAllValues({
+        nom: '',
+        email: '',
+        password: ''
+      })
+      refreshPage();
+    }
+  }
+
+  const backTchat = async () => {
+    history.push("/app");
+  }
+
   return (
     <Card className={classes.backgroundC}>
       <Typography variant="h2">
@@ -102,13 +139,37 @@ function Settings() {
       <Card className="cardSetting">
         <Card variant="outlined" className="settingInfo">
           <div style={{ display: "flex", flexDirection: "column" }}>
-            Modify Username :<TextField label="New Username"></TextField>
+            <TextField
+                placeholder="Username"
+                name="nom"
+                id="nom"
+                type="text"
+                onChange={changeHandler}
+            ></TextField>
           </div>
 
           <div style={{ display: "flex", flexDirection: "column" }}>
-            Modify Email
-            <TextField label="New Email :" ></TextField>
+            <TextField
+                placeholder="Email"
+                name="email"
+                id="email"
+                type="text"
+                onChange={changeHandler}
+            ></TextField>
           </div>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <TextField
+                placeholder="Password"
+                name="password"
+                id="password"
+                type="password"
+                onChange={changeHandler} ></TextField>
+          </div>
+          <Button style={{margin: '0 auto', display: "flex"}}
+              variant="contained"
+              color="secondary"
+              onClick= {updateUser}>Update
+          </Button>
         </Card>
 
         <Card variant="outlined" className="settingInfo">
@@ -137,6 +198,11 @@ function Settings() {
           </FormControl>
         </div>
       </Card>
+      <Button
+          variant="contained"
+          color="secondary"
+          onClick= {backTchat}>Back
+      </Button>
     </Card>
   );
 }

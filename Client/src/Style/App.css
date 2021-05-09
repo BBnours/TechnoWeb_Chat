@@ -40,6 +40,7 @@
 }
 
 .login {
+  color: white;
   text-align: center;
   margin: auto;
 }
@@ -64,12 +65,10 @@
 }
 
 .button {
-  background-color: black;
-  margin: 50px;
   text-align:right;
   text-decoration:none;
   text-align: center;
-  color: white;
+  color: yellow;
 }
 
 footer {
